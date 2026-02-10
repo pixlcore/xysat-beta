@@ -1,0 +1,43 @@
+{
+	"name": "xysat",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Remote satellite worker daemon for xyOps.",
+	"author": "Joseph Huckaby <jhuckaby@pixlcore.com>",
+	"homepage": "https://github.com/pixlcore/xysat",
+	"license": "BSD-3-Clause",
+	"bin": "main.js",
+	"main": "main.js",
+	"scripts": {
+		"changelog": "node tools/changelog.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/pixlcore/xysat"
+	},
+	"bugs": {
+		"url": "https://github.com/pixlcore/xysat/issues"
+	},
+	"keywords": [
+		"xyops",
+		"xysat"
+	],
+	"dependencies": {
+		"async": "2.6.4",
+		"class-plus": "^1.0.0",
+		"node-notifier": "10.0.1",
+		"node-pty": "1.1.0",
+		"npm": "10.9.4",
+		"pixl-boot": "^2.0.2",
+		"pixl-cli": "^1.0.0",
+		"pixl-json-stream": "^1.0.7",
+		"pixl-perf": "^1.0.9",
+		"pixl-request": "^2.4.1",
+		"pixl-server": "^1.0.0",
+		"pixl-tools": "^2.0.0",
+		"pixl-xml": "^1.0.0",
+		"shell-quote": "1.8.2",
+		"systeminformation": "5.30.7",
+		"ws": "7.5.10"
+	}
+}
