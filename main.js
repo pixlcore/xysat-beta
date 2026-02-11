@@ -95,6 +95,7 @@ if ((args.install || args.uninstall || args.stop) && is_windows) {
 		println("Uninstalling xyOps Satellite...");
 		
 		var uninstallCompleted = function() {
+			println("Service uninstall has completed.  Preparing final delete process...");
 			try { 
 				// kill main process if still running
 				var pid = parseInt( fs.readFileSync( 'pid.txt', 'utf8' ) ); 
@@ -162,15 +163,31 @@ if ((args.install || args.uninstall || args.stop) && is_windows) {
 			
 			print("\nxyOps Satellite has been removed successfully.\n\n");
 			setTimeout( function() { process.exit(0); }, 1000 );
-		};
-		svc.on('uninstall', uninstallCompleted);
-		svc.on('alreadyuninstalled', uninstallCompleted);
+		}; // uninstallCompleted
+		
+		svc.on('uninstall', function() {
+			println("Service 'uninstall' hook has fired.");
+			uninstallCompleted();
+		});
+		svc.on('alreadyuninstalled', function() {
+			println("Service 'alreadyuninstalled' hook has fired.");
+			uninstallCompleted();
+		});
 		
 		svc.on('error', function(err) {
 			print("\nWindows Service Error: " + err + "\n\n");
 			process.exit(1);
 		});
 		
+		// last resort
+		println("Setting last resort timer (5s)...");
+		var lastResortTimer = setTimeout( function() {
+			println("Last resort timer has fired.");
+			uninstallCompleted();
+		}, 5000 );
+		lastResortTimer.unref();
+		
+		println("Calling service uninstall...");
 		svc.uninstall();
 	} // uninstall
 	
