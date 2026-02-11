@@ -89,6 +89,11 @@ if ((args.install || args.uninstall || args.stop) && is_windows) {
 	} // install
 	
 	if (args.uninstall) {
+		const task = `xysat-delete-${Date.now()}`;
+		const logFile = Path.join(os.tmpdir(), `${task}.log`);
+		cli.setLogFile( logFile );
+		println("Uninstalling xyOps Satellite...");
+		
 		var uninstallCompleted = function() {
 			try { 
 				// kill main process if still running
@@ -100,21 +105,52 @@ if ((args.install || args.uninstall || args.stop) && is_windows) {
 			const installDir = __dirname;
   			try { process.chdir(os.tmpdir()); } catch {}
 			
-			const task = `xysat-delete-${Date.now()}`;
-			const tempFile = Path.join(os.tmpdir(), `${task}.ps1`);
+			const psFile = Path.join(os.tmpdir(), `${task}.ps1`);
+			const escPS = (s) => s.replace(/'/g, "''"); // for single-quoted PS strings
 			
-			// sleep then nuke folder
 			const ps = [
+				`$log = '${escPS(logFile)}'`,
+				`function Log($msg) {`,
+				`  $ts = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss.fff')`,
+				`  Add-Content -LiteralPath $log -Value ("[$ts] " + $msg)`,
+				`}`,
+				``,
+				`Log "BEGIN self-delete script"`,
+				`Log ("Script path: " + $MyInvocation.MyCommand.Path)`,
+				`Log ("Target dir:  ${escPS(installDir)}")`,
+				`Log "Sleeping 5 seconds..."`,
 				`Start-Sleep -Seconds 5`,
-				`Remove-Item -LiteralPath '${installDir.replace(/'/g, "''")}' -Recurse -Force -ErrorAction SilentlyContinue`,
-				`Remove-Item -LiteralPath $MyInvocation.MyCommand.Path -Force -ErrorAction SilentlyContinue`
+				``,
+				`try {`,
+				`  if (Test-Path -LiteralPath '${escPS(installDir)}') {`,
+				`    Log "Attempting Remove-Item..."`,
+				`    $err = $null`,
+				`    Remove-Item -LiteralPath '${escPS(installDir)}' -Recurse -Force -ErrorAction SilentlyContinue -ErrorVariable err`,
+				`    if (Test-Path -LiteralPath '${escPS(installDir)}') {`,
+				`      Log "Remove-Item completed but target still exists."`,
+				`      if ($err) { Log ("Remove-Item error: " + ($err | Out-String).Trim()) }`,
+				`    } else {`,
+				`      Log "SUCCESS: target deleted."`,
+				`    }`,
+				`  } else {`,
+				`    Log "Target did not exist at delete time."`,
+				`  }`,
+				`} catch {`,
+				`  Log ("EXCEPTION: " + $_.Exception.Message)`,
+				`}`,
+				``,
+				`Log "Cleaning up script file..."`,
+				`try { Remove-Item -LiteralPath $MyInvocation.MyCommand.Path -Force -ErrorAction SilentlyContinue } catch {}`,
+				`Log "END self-delete script"`
 			].join('\n') + '\n';
 			
-			fs.writeFileSync(tempFile, ps, 'utf8');
+			fs.writeFileSync(psFile, ps, 'utf8');
+			cli.log("Script: " + psFile);
 			
-			const tr = `powershell.exe -NoProfile -ExecutionPolicy Bypass -File \\"${tempFile}\\"`;
+			const tr = `powershell.exe -NoProfile -ExecutionPolicy Bypass -File \\"${psFile}\\"`;
 			let cmd = `schtasks /Create /TN "${task}" /SC ONCE /ST 00:00 /SD 01/01/2000 /RU SYSTEM /RL HIGHEST /TR "${tr}"`;
 			cmd += ` && schtasks /Run /TN "${task}" && schtasks /Delete /TN "${task}" /F`;
+			cli.log("Command: " + cmd);
 			
 			const child = cp.spawn(cmd, {
 				shell: true,
@@ -125,7 +161,7 @@ if ((args.install || args.uninstall || args.stop) && is_windows) {
 			child.unref();
 			
 			print("\nxyOps Satellite has been removed successfully.\n\n");
-			process.exit(0);
+			setTimeout( function() { process.exit(0); }, 1000 );
 		};
 		svc.on('uninstall', uninstallCompleted);
 		svc.on('alreadyuninstalled', uninstallCompleted);
