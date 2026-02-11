@@ -6,6 +6,8 @@
 
 const Path = require('path');
 const fs = require('fs');
+const cp = require('child_process');
+const os = require('os');
 const PixlServer = require("pixl-server");
 const pkg = require('./package.json');
 const self_bin = Path.resolve(process.argv[0]) + ' ' + Path.resolve(process.argv[1]);
@@ -94,9 +96,33 @@ if ((args.install || args.uninstall || args.stop) && is_windows) {
 				if (pid) process.kill( pid, 'SIGTERM' );
 			} catch (e) {;}
 			
-			// delete entire sat directory
-			try { Tools.rimraf.sync( __dirname ); }
-			catch (e) { die("\nError: Failed to delete folder: " + __dirname + ": " + e + "\n\n"); }
+			// delete directory in background using schtasks
+			const installDir = __dirname;
+  			try { process.chdir(os.tmpdir()); } catch {}
+			
+			const task = `xysat-delete-${Date.now()}`;
+			const tempFile = Path.join(os.tmpdir(), `${task}.ps1`);
+			
+			// sleep then nuke folder
+			const ps = [
+				`Start-Sleep -Seconds 5`,
+				`Remove-Item -LiteralPath '${installDir.replace(/'/g, "''")}' -Recurse -Force -ErrorAction SilentlyContinue`,
+				`Remove-Item -LiteralPath $MyInvocation.MyCommand.Path -Force -ErrorAction SilentlyContinue`
+			].join('\n') + '\n';
+			
+			fs.writeFileSync(tempFile, ps, 'utf8');
+			
+			const tr = `powershell.exe -NoProfile -ExecutionPolicy Bypass -File \\"${tempFile}\\"`;
+			let cmd = `schtasks /Create /TN "${task}" /SC ONCE /ST 00:00 /SD 01/01/2000 /RU SYSTEM /RL HIGHEST /TR "${tr}"`;
+			cmd += ` && schtasks /Run /TN "${task}" && schtasks /Delete /TN "${task}" /F`;
+			
+			const child = cp.spawn(cmd, {
+				shell: true,
+				detached: true,
+				stdio: 'ignore',
+				windowsHide: true
+			});
+			child.unref();
 			
 			print("\nxyOps Satellite has been removed successfully.\n\n");
 			process.exit(0);
