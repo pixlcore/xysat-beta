@@ -94,8 +94,8 @@ if ((args.install || args.uninstall || args.stop) && is_windows) {
 		cli.setLogFile( logFile );
 		println("Uninstalling xyOps Satellite...");
 		
-		var uninstallCompleted = function() {
-			println("Service uninstall has completed.  Preparing final delete process...");
+		var scheduleBackgroundDelete = function() {
+			println("Preparing final background deletion process...");
 			try { 
 				// kill main process if still running
 				var pid = parseInt( fs.readFileSync( 'pid.txt', 'utf8' ) ); 
@@ -119,8 +119,8 @@ if ((args.install || args.uninstall || args.stop) && is_windows) {
 				`Log "BEGIN self-delete script"`,
 				`Log ("Script path: " + $MyInvocation.MyCommand.Path)`,
 				`Log ("Target dir:  ${escPS(installDir)}")`,
-				`Log "Sleeping 5 seconds..."`,
-				`Start-Sleep -Seconds 5`,
+				`Log "Sleeping for 10 seconds..."`,
+				`Start-Sleep -Seconds 10`,
 				``,
 				`try {`,
 				`  if (Test-Path -LiteralPath '${escPS(installDir)}') {`,
@@ -146,12 +146,12 @@ if ((args.install || args.uninstall || args.stop) && is_windows) {
 			].join('\n') + '\n';
 			
 			fs.writeFileSync(psFile, ps, 'utf8');
-			cli.log("Script: " + psFile);
+			cli.log("Temp Script: " + psFile);
 			
 			const tr = `powershell.exe -NoProfile -ExecutionPolicy Bypass -File \\"${psFile}\\"`;
 			let cmd = `schtasks /Create /TN "${task}" /SC ONCE /ST 00:00 /SD 01/01/2000 /RU SYSTEM /RL HIGHEST /TR "${tr}"`;
 			cmd += ` && schtasks /Run /TN "${task}" && schtasks /Delete /TN "${task}" /F`;
-			cli.log("Command: " + cmd);
+			cli.log("Executing Command: " + cmd);
 			
 			const child = cp.spawn(cmd, {
 				shell: true,
@@ -161,17 +161,16 @@ if ((args.install || args.uninstall || args.stop) && is_windows) {
 			});
 			child.unref();
 			
-			print("\nxyOps Satellite has been removed successfully.\n\n");
-			setTimeout( function() { process.exit(0); }, 1000 );
-		}; // uninstallCompleted
+			print("\nBackground deletion was scheduled successfully.\n\n");
+		}; // scheduleBackgroundDelete
+		
+		scheduleBackgroundDelete();
 		
 		svc.on('uninstall', function() {
 			println("Service 'uninstall' hook has fired.");
-			uninstallCompleted();
 		});
 		svc.on('alreadyuninstalled', function() {
 			println("Service 'alreadyuninstalled' hook has fired.");
-			uninstallCompleted();
 		});
 		
 		svc.on('error', function(err) {
@@ -179,16 +178,20 @@ if ((args.install || args.uninstall || args.stop) && is_windows) {
 			process.exit(1);
 		});
 		
-		// last resort
-		println("Setting last resort timer (5s)...");
-		var lastResortTimer = setTimeout( function() {
-			println("Last resort timer has fired.");
-			uninstallCompleted();
-		}, 5000 );
-		lastResortTimer.unref();
+		setTimeout( function() { 
+			// giving scheduleBackgroundDelete a chance to register the task
+			// svc.uninstall seems to kill the current process, so we have to do it last
+			println("Calling service uninstall...");
+			svc.uninstall();
+			
+			// final unref exit timer of last resort
+			var finalTimer = setTimeout( function() { 
+				println("Final exit timer has fired.");
+				process.exit(0); 
+			}, 5000 );
+			finalTimer.unref();
+		}, 1000 );
 		
-		println("Calling service uninstall...");
-		svc.uninstall();
 	} // uninstall
 	
 	if (args.stop) {
