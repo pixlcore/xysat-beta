@@ -12,7 +12,6 @@ var JSONStream = require('pixl-json-stream');
 var Tools = require('pixl-tools');
 var Perf = require('pixl-perf');
 var Request = require('pixl-request');
-var config = require('../config.json');
 
 var perf = new Perf();
 perf.setScale( 1 ); // seconds
@@ -23,12 +22,6 @@ request.setTimeout( 300 * 1000 );
 request.setFollow( 5 );
 request.setAutoError( true );
 request.setKeepAlive( false );
-
-// airgapped mode
-if (config.airgap && config.airgap.enabled) {
-	if (config.airgap.whitelist && config.airgap.whitelist.length) request.setWhitelist( config.airgap.whitelist );
-	if (config.airgap.blacklist && config.airgap.blacklist.length) request.setBlacklist( config.airgap.blacklist );
-}
 
 var net_url = 'https://github.com/jhuckaby/performa-satellite/releases/latest/download/performa-satellite-linux-x64';
 var ac = null;
@@ -42,7 +35,37 @@ var ac = null;
 console.log("Job start!");
 
 // ANSI escape codes
-(function() {
+var ansiTests = function() {
+	console.log('\nANSI Color Tests:\n');
+	console.log('System Colors:');
+	
+	let row = '';
+	for (let i = 0; i < 16; i++) {
+		row += `\x1b[48;5;${i}m\x1b[38;5;${i < 8 ? 15 : 0}m ${String(i).padStart(2)} \x1b[0m `;
+	}
+	
+	process.stdout.write(row + '\n\n');
+	console.log('6x6x6 RGB Cube:');
+	
+	for (let i = 16; i < 232; i += 6) {
+		let row = '';
+		
+		for (let j = 0; j < 6; j++) {
+			const color = i + j;
+			row += `\x1b[48;5;${color}m ${String(color).padStart(3)} \x1b[0m `;
+		}
+		
+		process.stdout.write(row + '\n');
+	}
+	
+	console.log('\nGrayscale:');
+	row = '';
+	for (let i = 232; i < 256; i++) {
+		row += `\x1b[48;5;${i}m ${i} \x1b[0m `;
+	}
+	
+	process.stdout.write(row + '\n');
+	
 	// ANSI escape codes for text styles
 	const RESET = '\x1b[0m';
 	const BOLD = '\x1b[1m';
@@ -63,8 +86,8 @@ console.log("Job start!");
 	const WHITE = '\x1b[37m';
 	const GRAY = '\x1b[90m';
 	
-	console.log(`Testing some ANSI colors and styles: ${BOLD}Bold text${RESET}, ${DIM}Dim text${RESET}, ${ITALIC}Italic text${RESET}, ${UNDERLINE}Underlined text${RESET}, ${INVERSE}Inverse text${RESET}, ${STRIKETHROUGH}Strikethrough text${RESET}, ${BLACK}Black text${RESET}, ${RED}Red text${RESET}, ${GREEN}Green text${RESET}, ${YELLOW}Yellow text${RESET}, ${BLUE}Blue text${RESET}, ${MAGENTA}Magenta text${RESET}, ${CYAN}Cyan text${RESET}, ${WHITE}White text${RESET}, ${GRAY}Gray text${RESET}.`);
-})();
+	console.log(`\nTesting some ANSI colors and styles: ${BOLD}Bold text${RESET}, ${DIM}Dim text${RESET}, ${ITALIC}Italic text${RESET}, ${UNDERLINE}Underlined text${RESET}, ${INVERSE}Inverse text${RESET}, ${STRIKETHROUGH}Strikethrough text${RESET}, ${BLACK}Black text${RESET}, ${RED}Red text${RESET}, ${GREEN}Green text${RESET}, ${YELLOW}Yellow text${RESET}, ${BLUE}Blue text${RESET}, ${MAGENTA}Magenta text${RESET}, ${CYAN}Cyan text${RESET}, ${WHITE}White text${RESET}, ${GRAY}Gray text${RESET}.`);
+};
 
 if (process.argv.length > 2) console.log("ARGV: " + JSON.stringify(process.argv));
 
@@ -88,6 +111,16 @@ stream.on('json', function(job) {
 	if (job.input && job.input.files && job.input.files.length) {
 		console.log( "Received input files: " + JSON.stringify(job.input.files) );
 		console.log( "Glob: " + JSON.stringify( Tools.glob.sync('*') ) );
+	}
+	
+	if (job.workflowData) {
+		console.log( "Received workflowData: " + JSON.stringify(job.workflowData) );
+	}
+	
+	// airgapped mode
+	if (job.airgap && job.airgap.enabled) {
+		if (job.airgap.whitelist && job.airgap.whitelist.length) request.setWhitelist( job.airgap.whitelist );
+		if (job.airgap.blacklist && job.airgap.blacklist.length) request.setBlacklist( job.airgap.blacklist );
 	}
 	
 	// use some memory so we show up on the mem graph
@@ -115,6 +148,8 @@ stream.on('json', function(job) {
 	
 	duration = Math.max(1, duration);
 	
+	ansiTests();
+	
 	// spawn child process
 	if (process.platform == 'win32') cp.exec( 'timeout /t ' + Math.floor(duration - 1) + ' /nobreak >nul', function(err, stdout, stderr) {} );
 	else cp.exec( 'sleep ' + Math.floor(duration - 1), function(err, stdout, stderr) {} );
@@ -136,7 +171,7 @@ stream.on('json', function(job) {
 		idx++;
 		
 		if (progress >= 1.0) {
-			console.log( "We're done!" );
+			console.log( "\nWe're done!" );
 			perf.end();
 			clearTimeout( timer );
 			

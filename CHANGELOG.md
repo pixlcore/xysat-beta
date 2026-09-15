@@ -1,0 +1,1076 @@
+# xySat Changelog
+
+## Version v1.0.46
+
+> September 11, 2026
+
+- [`bd7f3eb`](https://github.com/pixlcore/xysat/commit/bd7f3eb7876eecfc1f6e145008f43dc9f7a8c743): Version 1.0.46
+- [`9ce8ae8`](https://github.com/pixlcore/xysat/commit/9ce8ae8060ccef5cd20a0b2f3edbe0aa8b7cc306): Bug Fix: Never allow full monitor cycles to overlap.  Fixes #14
+- [`71e5c45`](https://github.com/pixlcore/xysat/commit/71e5c456cc0b6afa257b3468d0dbe15024a4025e): Dep: Bump pixl-request to v2.6.11 for Node.js v24 warning fix.
+- [`b7049dd`](https://github.com/pixlcore/xysat/commit/b7049ddad72a5bea2f688fc3484368bac3010789): Bug Fix: Include HTTP response code in error messages for success/error match.
+
+## Version v1.0.45
+
+> September 4, 2026
+
+- [`661a7e8`](https://github.com/pixlcore/xysat/commit/661a7e88202f3e00ab372d6624478cd851252a44): Version 1.0.45
+- [`f59b853`](https://github.com/pixlcore/xysat/commit/f59b8534dc0d77fc0672de819ef6481d1f8f873e): Dep: Bump systeminformation to v5.33.8.
+- [`d18da18`](https://github.com/pixlcore/xysat/commit/d18da18b2127826dea98a15b16f381ab6ddbe4f2): Dep: Bump pixl-boot to v2.0.5 for "OOMPolicy=continue" in systemd service file.  Fixes #12
+- [`dad9dff`](https://github.com/pixlcore/xysat/commit/dad9dff619339b548b583062e30d5af4db951e46): Bug Fix: Workaround 3rd party bug in node-windows where EventLogger can crash on spawn.  Fixes pixlcore/xyops#437
+
+## Version v1.0.44
+
+> August 30, 2026
+
+- [`4a1a009`](https://github.com/pixlcore/xysat/commit/4a1a00947f995cfa211819519a504c705bcf4a4c): Version 1.0.44
+- [`9e2104e`](https://github.com/pixlcore/xysat/commit/9e2104ee22ad19a806b422766246d6a316b484d4): Dep: Bump systeminformation to v5.33.6 for various fixes.
+- [`ddcea27`](https://github.com/pixlcore/xysat/commit/ddcea27ebc01767395f2db7b9b12c171411951ec): Bug Fix: Improve error logging for monitor plugin failures / timeouts.
+- [`620b945`](https://github.com/pixlcore/xysat/commit/620b9453cdcd7fab2a8839f0c8effedcdbf839f8): Bug Fix: Write config file updates atomically, to avoid race conditions on power loss.  Fixes pixlcore/xyops#433
+- [`80f247e`](https://github.com/pixlcore/xysat/commit/80f247e1bf3cbf2fb0c86451d9be7bb8f7646001): Dep: Bump systeminformation to v5.33.5 for misc fixes.
+
+## Version v1.0.43
+
+> August 25, 2026
+
+- [`05aa50a`](https://github.com/pixlcore/xysat/commit/05aa50a12d21997346a83408d4853e8f3c93b916): Version 1.0.43
+- [`d2a8db3`](https://github.com/pixlcore/xysat/commit/d2a8db30de20c307aee0e6651a6c630900f68e4b): Bug Fix: GitHub Actions: Never include the GitHub runner's UID/GID in release archives.  Fixes pixlcore/xyops#429
+- [`53db089`](https://github.com/pixlcore/xysat/commit/53db089b8697ebf7ea033768fdd55e1ae5478584): Bug Fix: Performance: Make job ownership setup asynchronous.
+- [`ac2dabc`](https://github.com/pixlcore/xysat/commit/ac2dabc2aeb42e2b308ef18cecfaacb52011eccb): Security: Harden shared and per-job temp directories.
+
+## Version v1.0.42
+
+> August 24, 2026
+
+- [`59e0d24`](https://github.com/pixlcore/xysat/commit/59e0d24fe511b2c92d261669086be410444bc357): Version 1.0.42
+- [`2b13bec`](https://github.com/pixlcore/xysat/commit/2b13bec29941e9e4590eb049b3e8a9088ad43fe1): Bug Fix: Tweak websocket connect retry backoff algorithm.
+- [`5301901`](https://github.com/pixlcore/xysat/commit/53019019e46d49f2c9b6abf75a0442bd772dd167): Dep: Bump systeminformation to v5.33.2 for windows powershell fix.
+- [`76c5be8`](https://github.com/pixlcore/xysat/commit/76c5be83bc514b6fc542780f20c12a81f48572dd): Bug Fix: Adjust permissions for temp directories to prevent deletion by non-owner users.  Fixes #10.
+- [`0d6451a`](https://github.com/pixlcore/xysat/commit/0d6451a9c51e3e43a64a80b090fea682ab095b1c): Bug Fix: Correct job temp ownership for non-root plugins.
+- [`b0e2c34`](https://github.com/pixlcore/xysat/commit/b0e2c343221b4b8cc88e349b1114c6bc1d6a2816): Bug Fix: Set retry_ok flag on job when aborting for shutdown.
+
+## Version v1.0.41
+
+> August 11, 2026
+
+- [`3c8391e`](https://github.com/pixlcore/xysat/commit/3c8391ea6e15c1d4d7f4b5ba00bc0437a46061ca): Version 1.0.41
+- [`eab3743`](https://github.com/pixlcore/xysat/commit/eab3743b4c2174c6c2d9e814852b6478fd883461): Feature: New optional graceful shutdown (wait for all jobs to complete).
+- [`db763c9`](https://github.com/pixlcore/xysat/commit/db763c90a772ed97fd14ef53c760e11cac7dd4ad): Doc: Fix two minor corrections in README (fixed link and wording).
+
+## Version v1.0.40
+
+> August 8, 2026
+
+- [`9e02251`](https://github.com/pixlcore/xysat/commit/9e022513a0f79f21747553e7e69f491219e457bc): Version 1.0.40
+- [`ea37723`](https://github.com/pixlcore/xysat/commit/ea37723c8d736a281300786dcc10b7dd96eedf09): Dep: Bump systeminformation to v5.33.1 for networkStats fix on Windows.
+- [`4bbe080`](https://github.com/pixlcore/xysat/commit/4bbe080add198553ed18dce7c1b227847fa8a673): Dep: Bump @pixlcore/xyops-sdk to v1.0.4 for latest API type definitions.
+- [`1569bd2`](https://github.com/pixlcore/xysat/commit/1569bd2abb44bdb1aae27b03f110ca3e86485a46): Dep: Bump pixl-request to v2.6.10 for regression bug fix in download retries.
+- [`2c37b57`](https://github.com/pixlcore/xysat/commit/2c37b57093e249d6292bc75c38f3eaf56669dac0): Bug Fix: Potential crash if params.headers is missing from job object.  Ref pixlcore/xyops#410
+- [`374b9a6`](https://github.com/pixlcore/xysat/commit/374b9a62a39507d511e79f0a48e2612897246cf4): Add basic preliminary support for monitoring on FreeBSD (WIP).
+
+## Version v1.0.39
+
+> August 3, 2026
+
+- [`bf8f5ad`](https://github.com/pixlcore/xysat/commit/bf8f5ad42b733a0c44d711f4e4b8b387082e9fa9): Version 1.0.39
+- [`03114a7`](https://github.com/pixlcore/xysat/commit/03114a7dea0bcffadda7f45b27911335a889139d): Deps: Bump pixl-boot to v2.0.4 for Rocky Linux support.
+- [`90796ea`](https://github.com/pixlcore/xysat/commit/90796ea29d96300fc2c858ec41a25987b92c7b83): Bug Fix: Potential race condition with websocket auto-reconnecting and auth flag.
+
+## Version v1.0.38
+
+> July 22, 2026
+
+- [`63c79b9`](https://github.com/pixlcore/xysat/commit/63c79b90ca28c922789b8b6314dbdcddb34c4fe1): Version 1.0.38
+- [`06ca6cd`](https://github.com/pixlcore/xysat/commit/06ca6cdc274c9d9146b35926d8af6d9e32134d19): Bump systeminformation to v5.33.0 for latest bug fixes and features.
+- [`843262f`](https://github.com/pixlcore/xysat/commit/843262fa133de0370f5eae8657601d17281662c9): Bump pixl-boot to v2.0.3 for macOS Tahoe launchctl plist fix.
+
+## Version v1.0.37
+
+> July 16, 2026
+
+- [`727be57`](https://github.com/pixlcore/xysat/commit/727be57e91cf310ff3cb00d1a2f469fea9281571): Version 1.0.37
+- [`5eaa106`](https://github.com/pixlcore/xysat/commit/5eaa10602bbf8665a5324f697ffbdccd93cc6870): Bug Fix: Self-upgrade inside containers launched the start script using "sh" (not "bash") causing the new CSV URL splitter to fail.
+
+## Version v1.0.36
+
+> July 16, 2026
+
+- [`2edc00e`](https://github.com/pixlcore/xysat/commit/2edc00e75c2215468bcc04796905130f316c9334): Version 1.0.36
+- [`6040bb1`](https://github.com/pixlcore/xysat/commit/6040bb171654a59ba535d20c8c71bc4141adbfc9): Meta: Fix GitHub Actions build so that a release draft is created before uploading assets.
+
+## Version v1.0.35
+
+> July 16, 2026
+
+- [`4e5b7bf`](https://github.com/pixlcore/xysat/commit/4e5b7bf00e2194bad45eae3ccec0ca8cfb41e1a6): Version 1.0.35
+- [`0ce7952`](https://github.com/pixlcore/xysat/commit/0ce7952d0badf116dd0f8a8f395d6ae77da84381): Bump xyops-sdk to v1.0.3 for new features.
+- [`3492e2a`](https://github.com/pixlcore/xysat/commit/3492e2a006b683e472533f88241ad8836b6c26d2): Meta: Add provenance attestation to GitHub Actions build artifacts.
+- [`6960f1a`](https://github.com/pixlcore/xysat/commit/6960f1aed0b441c6c20968006a48a4d990084367): Feature: Support multiple CSV setup URLs in XYOPS_setup env var (container start script).
+
+## Version v1.0.34
+
+> July 14, 2026
+
+- [`30bae5c`](https://github.com/pixlcore/xysat/commit/30bae5cce32281a3fe5d1a929f184bd9e762c622): Version 1.0.34
+- [`5527d06`](https://github.com/pixlcore/xysat/commit/5527d0645bd382ab97de564ca660e07508a86221): Test Plugin: Include a comprehensive ANSI 256-color test pattern.
+- [`c698cb4`](https://github.com/pixlcore/xysat/commit/c698cb464296ba7c3e4d15cf2a3acc21de3af1e0): Shell Plugin: Bug fix regarding preserving empty lines, and increase max line length to 32MB.
+- [`752f8a9`](https://github.com/pixlcore/xysat/commit/752f8a913a13e036430de1b4724d053f50ca5c47): Docker Plugin: Allow shell variable substitution inside cont_extras param.
+- [`751a54d`](https://github.com/pixlcore/xysat/commit/751a54d4d9b5c552cf2dacf78799ad1d96f68424): Dep: Bump systeminformation to 5.31.17 for various bug fixes.
+- [`0d1d8d1`](https://github.com/pixlcore/xysat/commit/0d1d8d18833a170d1ece605b29a99624cb6b2959): Dep: Add @pixlcore/xyops-sdk v1
+- [`53938c7`](https://github.com/pixlcore/xysat/commit/53938c721ece81e21dbdf6748973dced4d3fc86f): Dep: Bump pixl-json-stream to v1.0.10 for line delimiting bug fix.
+
+## Version v1.0.33
+
+> July 2, 2026
+
+- [`71ca892`](https://github.com/pixlcore/xysat/commit/71ca89262ebb19496ba156705864e0cd088d76e4): Version 1.0.33
+- [`f9434c1`](https://github.com/pixlcore/xysat/commit/f9434c166ed71ef13576e8177b47e3422137f135): Feature: Support disabling monitoring server-wide.
+- [`a092278`](https://github.com/pixlcore/xysat/commit/a092278276de185fe9f4ba857147f3f390c91449): Dep: Bump shell-quote to v1.9.0 for vuln fix.
+
+## Version v1.0.32
+
+> June 28, 2026
+
+- [`56c9715`](https://github.com/pixlcore/xysat/commit/56c97154084e3c36c099e091d5e2b79274ec516b): Version 1.0.32
+- [`f5a74ef`](https://github.com/pixlcore/xysat/commit/f5a74ef7e7205874e76e1073a035c87a9fa830e0): Dep: Bump systeminformation to v5.31.11 for misc bug fixes.
+- [`80d9f40`](https://github.com/pixlcore/xysat/commit/80d9f4072bf449c719a9c9504ffa34590bd5ab31): Job Push System: Add validation and improved data handling.
+- [`d76c2b6`](https://github.com/pixlcore/xysat/commit/d76c2b61b3a9cd75ac3518fad2a3746da46f5de6): Meta: Release Script: Do not run if local git repo has changes.
+- [`3f605ac`](https://github.com/pixlcore/xysat/commit/3f605ac31286caa6ea6f147677e27055f75b629e): Test Plugin: If workflowData is provided, dump it to stdout.
+
+## Version v1.0.31
+
+> June 15, 2026
+
+- [`70e9255`](https://github.com/pixlcore/xysat/commit/70e92558b5e2791dce128e229c28d56e97817e7e): Version 1.0.31
+	- Bump pixl-request to v2.6.7 for various fixes and upstream vuln patches
+	- Bump ws to v7.5.11 for vuln fix
+- [`9449517`](https://github.com/pixlcore/xysat/commit/94495178e1593e6259c42fbc2198651a1261c556): Add new Web Hook built-in Plugin.
+- [`f423650`](https://github.com/pixlcore/xysat/commit/f423650a0d32126f4885575e48a9e7109f4ace51): Self-Upgrade: Allow the 60 second timeout to be configurable.
+- [`81fb6ce`](https://github.com/pixlcore/xysat/commit/81fb6ce4fadb3dfdc88cc16a01df08252e5a6f88): HTTP Plugin: Allow URL to contain `[base_url]` macro which replaces the protocol.
+
+## Version v1.0.30
+
+> June 9, 2026
+
+- [`4de15f1`](https://github.com/pixlcore/xysat/commit/4de15f129dc37dfc73fd1208c3824bf5a9375194): Version 1.0.30
+- [`4e56eee`](https://github.com/pixlcore/xysat/commit/4e56eeed9560a1a8c99f0bf0931dc0b9becfeba1): Bump shell-quote to v1.8.4 for vuln fix.
+- [`39cf91a`](https://github.com/pixlcore/xysat/commit/39cf91a0962a3344f480edacc57b83273448c75e): Bump systeminformation to v5.31.7 for vuln fix.
+
+## Version v1.0.29
+
+> May 17, 2026
+
+- [`15fc947`](https://github.com/pixlcore/xysat/commit/15fc9473fc0e811a570446c09cfc7ae4d785d96d): Version 1.0.29
+	- Bump systeminformation to v5.31.6 for high severity vuln fix.
+
+## Version v1.0.28
+
+> May 8, 2026
+
+- [`e865033`](https://github.com/pixlcore/xysat/commit/e86503392012102b32fc2a3c5a74f7fc3da4a9d0): Version 1.0.28
+- [`aa1d7fc`](https://github.com/pixlcore/xysat/commit/aa1d7fc23a7a91869017e6feed9cfcd16b27ee97): Enhance job management and data handling
+
+## Version v1.0.27
+
+> May 1, 2026
+
+- [`9728e99`](https://github.com/pixlcore/xysat/commit/9728e9911a2845ca0d7bf0d1fa2b6393e17952ef): Version 1.0.27
+- [`9e313ec`](https://github.com/pixlcore/xysat/commit/9e313eccf2cdd189a33c405792daea96e7821827): Bug Fix: workflowData, serverData and input.data environment variables were not getting set correctly.
+
+## Version v1.0.26
+
+> May 1, 2026
+
+- [`6330f43`](https://github.com/pixlcore/xysat/commit/6330f43a1c6ab9ad33f52dd022021e72eac75439): Version 1.0.26
+- [`b005cb6`](https://github.com/pixlcore/xysat/commit/b005cb648bec7cc15bb685aad5a7781e89adf1b2): Child Env: Remove `./node_modules/.bin` from the PATH inserts (so it doesn't launch the rogue NPX).
+- [`6b28fc8`](https://github.com/pixlcore/xysat/commit/6b28fc831033c3ce086a06b403f12431d5a2529d): GitHub Release: Also remove bundled NPM from Windows build.
+
+## Version v1.0.25
+
+> May 1, 2026
+
+- [`3c54113`](https://github.com/pixlcore/xysat/commit/3c5411319bca52af530e94d9bfe18b1a0a19706d): Version 1.0.25
+- [`b6750c6`](https://github.com/pixlcore/xysat/commit/b6750c62a9bbce41acca00a40853c0cd764b260b): GitHub Release: Do not bundle NPM with Linux release, as the built-in NPX CLI is broken.
+
+## Version v1.0.24
+
+> May 1, 2026
+
+- [`84511e7`](https://github.com/pixlcore/xysat/commit/84511e79f561ecbc1ec4913cc31ea09bf51c0587): Version 1.0.24
+- [`47bb5ef`](https://github.com/pixlcore/xysat/commit/47bb5efe7b09909b965479b2e167f28527757b57): GitHub Release: Bump Node.js to v2.22.2 and NPM to v10.9.7.
+
+## Version v1.0.23
+
+> April 30, 2026
+
+- [`3ab5e95`](https://github.com/pixlcore/xysat/commit/3ab5e954601dda69e60ffb9ef02bc614d40464e5): Version 1.0.23
+	- Remove unused node-notifier dependency.
+	- Add ssh2 dependency, for future use.
+- [`eabd79c`](https://github.com/pixlcore/xysat/commit/eabd79c3b17c0d249410c52b9e9048d926e5ee85): Child Env Setup: Swap order of PATH directories so that our `bin/` is considered first.
+
+## Version v1.0.22
+
+> April 27, 2026
+
+- [`c972629`](https://github.com/pixlcore/xysat/commit/c97262989f07ddd29978e84e0b1b5f0c38efe679): Version 1.0.22
+- [`eeb8a6e`](https://github.com/pixlcore/xysat/commit/eeb8a6e0fb9a2db283770ef8cbc4d4833320c8c6): Bug Fix: HTTP Request Plugin: When downloading files, support optional `filename` param, and also fix issue with complex content-type header.
+- [`b3aa9e0`](https://github.com/pixlcore/xysat/commit/b3aa9e043b4b66906528183e3808b6c2be29acd6): Bug fix: Do not pass sniffed IP address if it is local (127.0.0.1 and family).
+- [`a49bfaa`](https://github.com/pixlcore/xysat/commit/a49bfaac26e96fb71aaf03dc540e309bc2c2e3c8): Feature: Support for passing `workflow_`, `workflow_data_`, `server_data_`, and `data_` environment variables.
+
+## Version v1.0.21
+
+> April 22, 2026
+
+- [`f558c6e`](https://github.com/pixlcore/xysat/commit/f558c6e7ded0e50e2dff0d45da16b11237439c87): Version 1.0.21
+	- Bump pixl-tools to v2.0.3 for updated getBytesFromText and getTextFromBytes functions.
+- [`761e36b`](https://github.com/pixlcore/xysat/commit/761e36b220de32486ed6ac25208ff12be30bb0af): Redesigned Docker container monitoring code and output format.  Convert all units to bytes, include totals.
+- [`53174f7`](https://github.com/pixlcore/xysat/commit/53174f7cf827fb99c5d0d6477bc71430a4232eca): Custom Monitor Plugins: Exec using `monitor_plugin_concurrency` if set, fallback to  Node's `os.availableParallelism()` if available, then to 1.
+
+## Version v1.0.20
+
+> April 16, 2026
+
+- [`7c144c1`](https://github.com/pixlcore/xysat/commit/7c144c19962ee832b0a21e2ba383743e0e042171): Version 1.0.20
+	- Bump pixl-request to v2.6.5 for upstream vuln fix in basic-ftp (sub-dep of proxy-agent).
+- [`1556b97`](https://github.com/pixlcore/xysat/commit/1556b97392ea922cf20697aed050e1c8ee4f24db): getBasicServerInfo: Pass along our own IP address (computed from first external net iface).
+
+## Version v1.0.19
+
+> April 14, 2026
+
+- [`ae2c414`](https://github.com/pixlcore/xysat/commit/ae2c4147eac10dc6cd614e7274f6389236e472bc): Version 1.0.19
+- [`53bf227`](https://github.com/pixlcore/xysat/commit/53bf2279ede59f7f526d280fbbd18a2844733104): Monitoring: Add docker container stats to monitoring data, if docker CLI is available, and feat is enabled in config.
+- [`05f1aee`](https://github.com/pixlcore/xysat/commit/05f1aee0c96e596eae09d29745b4431bcb2e9563): Job Output Processing: Append a warning to the job metadata log if a JSON line could not be parsed.
+- [`bfbfb85`](https://github.com/pixlcore/xysat/commit/bfbfb855c3f472e3de7e6d1d9196126a0e71fb9f): Bug Fix: Do not attempt to kill all processes if remote "runner" flag is set.
+
+## Version v1.0.18
+
+> April 13, 2026
+
+- [`ea20064`](https://github.com/pixlcore/xysat/commit/ea2006497bb58b94c6ddb5a100384ed2481afe71): Version 1.0.18
+	- Bump pixl-request to v2.6.4 for upstream vuln fix in basic-ftp (sub-dep of proxy-agent).
+- [`c0e0802`](https://github.com/pixlcore/xysat/commit/c0e0802958fab111230ae53411cffc651b744181): QuickMon: Add support for custom "quick" monitor plugins.
+- [`d9dbd6f`](https://github.com/pixlcore/xysat/commit/d9dbd6f6fb3e0d4f88bb0f289ca90f2703873266): Fix issue with Plugins with commands set to "powershell" or "pwsh" on Windows.  They require a "-File" prefix before the file path.  Fixes pixlcore/xyops#252 and nickdollimount/xyplug-powershell#30
+
+## Version v1.0.17
+
+> April 10, 2026
+
+- [`c0cc87d`](https://github.com/pixlcore/xysat/commit/c0cc87d097f39d3fe3eefff96e7504c9815a7b34): Version 1.0.17
+	- Bump pixl-request to v2.6.3 for upstream vuln fix in basic-ftp (sub-dep of proxy-agent).
+- [`fbdcf4c`](https://github.com/pixlcore/xysat/commit/fbdcf4c04dccb66a366c956e89e9fb0779d75ea7): HTTP Plugin: Add support for connect timeout param (default 10 seconds).
+- [`9bdc555`](https://github.com/pixlcore/xysat/commit/9bdc555724e70b6358f3e685c277f198898d37f1): Add GPU / graphics monitoring, disabled by default.
+
+## Version v1.0.16
+
+> April 6, 2026
+
+- [`035edfd`](https://github.com/pixlcore/xysat/commit/035edfd99eb29a3aa7e834c4966b02b68e5b604d): Version 1.0.16
+	- Bump lodash (sub-dep of async) to v4.18.1 for high severity vuln fix.
+- [`98457a0`](https://github.com/pixlcore/xysat/commit/98457a0e7df0ebc89f125e66dfad967f8c298c18): Meta: Change GitHub action to generate release notes automatically.
+- [`02cebf2`](https://github.com/pixlcore/xysat/commit/02cebf2a9cc57f25f468ef5cd3e1266efb641237): Meta: Add tools/release.sh script for automating releases.
+
+## Version v1.0.15
+
+> March 31, 2026
+
+- [`2fa2b96`](https://github.com/pixlcore/xysat/commit/2fa2b96b65828eef2ab3f74829582b0b45795989): Version 1.0.15
+	- Bump pixl-server to v1.0.50 for more detailed crash logs.
+	- Bump pixl-tools to v2.0.2 for upstream vuln fix in picomatch.
+- [`05e9d3d`](https://github.com/pixlcore/xysat/commit/05e9d3dde698285f7e5998a22f50229441e535db): Add very basic config validation on startup.
+- [`939dcee`](https://github.com/pixlcore/xysat/commit/939dcee0e22b7eb2f54b79d41cbf3f8dd96a9e5c): Improve container-start.sh to honor XYSAT_config_file env var.
+
+## Version v1.0.14
+
+> March 23, 2026
+
+- [`56b23c1`](https://github.com/pixlcore/xysat/commit/56b23c129e151a867a1d6538c47076f1019ade44): Version 1.0.14
+- [`fca55f8`](https://github.com/pixlcore/xysat/commit/fca55f8eaa9dd1db93db0635de65ed7372dcffc0): Allow user to specify which config keys can be updated by the conductor (managed_keys).
+- [`dd84eb4`](https://github.com/pixlcore/xysat/commit/dd84eb4e4ec06f9e70803f65f21003ba0b61a58a): Security Hardening: HTTP Request Plugin: Redact secrets in diagnostic output detail (best effort).
+- [`098750d`](https://github.com/pixlcore/xysat/commit/098750d560aeb9dd9eab6acd9306415f29ab7b73): Support optional XYSAT_config_file env var for custom config file location.
+- [`8dc4b49`](https://github.com/pixlcore/xysat/commit/8dc4b49d321c3c7508462831255590e6a7b612d7): Shell Plugin: Use Satellite's official temp_dir instead of hard-coding one.  Fixes #5.
+
+## Version v1.0.13
+
+> March 20, 2026
+
+- [`87b1019`](https://github.com/pixlcore/xysat/commit/87b1019355a87b099b3d2acee3dc9c0a1ba0985a): Version 1.0.13
+	- Bump systeminformation to 5.31.5 for latest macOS updates.
+- [`3d8195d`](https://github.com/pixlcore/xysat/commit/3d8195df61344f7f7095b8fe86e10bdbb1091ec5): Bug Fix: Use new socket secure flag from actual socket rather than config, when constructing HTTP URLs back to the conductor.  Ref: pixlcore/xyops#213
+
+## Version v1.0.12
+
+> March 6, 2026
+
+- [`75148c9`](https://github.com/pixlcore/xysat/commit/75148c9ac8481a58315d168c4c13933ba7e4d9fc): Version 1.0.12
+- [`2ec4316`](https://github.com/pixlcore/xysat/commit/2ec43169fc7546c9e6b22d03ec65e54fe6de9395): HTTP/Test Plugins: Stop trying to load xysat config.json file, use airgap config now present in job data.
+- [`e3a38a2`](https://github.com/pixlcore/xysat/commit/e3a38a2dedadc52dde5446dafdce337946e3fc16): Pass airgap config to child processes if set.
+- [`15d8fb0`](https://github.com/pixlcore/xysat/commit/15d8fb03768bb60cb69cff6f7c6295b4aa0a1bb9): Shell Plugin: Do not try to load the xysat config.json file, as this is not readable as a non-root users.
+- [`3287fa3`](https://github.com/pixlcore/xysat/commit/3287fa3196141bb8a46a1eb0f222308c61048fb0): Set permissions of temp dir to 777 on startup, for plugins to run as non-root users.
+
+## Version v1.0.11
+
+> March 2, 2026
+
+- [`72bbbd5`](https://github.com/pixlcore/xysat/commit/72bbbd5215f5734ca34fa325770e9fe5d270b28d): Version 1.0.11
+	- Bump pixl-request to v2.6.1 for retryDelayMax feature.
+- [`649a253`](https://github.com/pixlcore/xysat/commit/649a253f1929e084d81f10e7acee6acdb6bff7d8): Network Robustness: Big refactor of networking code in regards to finishing jobs and uploading files, to better handle unstable networks.
+- [`63a646e`](https://github.com/pixlcore/xysat/commit/63a646eb63de388f3094ac718b9cbf37a17390be): Introduce separate `http_file_opts` config prop for file upload and download settings (timeouts / retries).  Add retryDelayMax.
+- [`0330e4a`](https://github.com/pixlcore/xysat/commit/0330e4a315f70c21884588de207cd3bc4a25923c): Add SECURITY.md file.
+
+## Version v1.0.10
+
+> February 28, 2026
+
+- [`a6d0296`](https://github.com/pixlcore/xysat/commit/a6d0296b04f7e59ad348952728c4013b10826f17): Allow job file upload retries and retryDelay to be configurable in socket_opts object.
+- [`7d8b8cf`](https://github.com/pixlcore/xysat/commit/7d8b8cf71ee3d6314e5f0959c8c63b257c2bfca8): Version 1.0.10
+- [`60f0e3f`](https://github.com/pixlcore/xysat/commit/60f0e3f21f2e4c91c932e64da8eaca410e9a44c3): Upload Job Files: Log perf metrics on HTTP error (debug level 9).
+- [`e5dede2`](https://github.com/pixlcore/xysat/commit/e5dede2fec1c13934764c864fbf0621543d0d16a): Socket Ping Death: Ensure socket immediately closes by calling terminate() on the underlying WS handle.
+
+## Version v1.0.9
+
+> February 28, 2026
+
+- [`548bda4`](https://github.com/pixlcore/xysat/commit/548bda460d51633a2ed960493cbf40380f50a2d1): Version 1.0.9
+	- Bump pixl-request to v2.6.0 for new connectTimeout feature, as well as idleTimeout handling upstream data.
+	- Add retries with exponential backoff to file upload requests.
+- [`d8571ba`](https://github.com/pixlcore/xysat/commit/d8571ba241c6aefb4415416b92247fd9d21b99f4): Add comment that explains the high timeout setting on pixl-request
+- [`0cea26f`](https://github.com/pixlcore/xysat/commit/0cea26f87634ea3fc0da3edb9c04e4d6e4d002ca): Network Robustness: If socket connection is closed during final job update, keep trying indefinitely, unless satellite is shutting down.
+
+## Version v1.0.8
+
+> February 26, 2026
+
+- [`176f88d`](https://github.com/pixlcore/xysat/commit/176f88d15a58af0a90d87cb5e72f2dcd581dd0ef): Version 1.0.8
+- [`fdbd5d4`](https://github.com/pixlcore/xysat/commit/fdbd5d47b82004654d83a5143429d14b882977dc): Revert /proc/loadavg change, as it was a red herring.
+- [`d965304`](https://github.com/pixlcore/xysat/commit/d96530456150781359a615d7c6ff806550fc5f08): Shell Plugin: Remove inused "Interpret JSON" code leftover from Cronicle.
+
+## Version v1.0.7
+
+> February 26, 2026
+
+- [`7923410`](https://github.com/pixlcore/xysat/commit/7923410396f7a915e82a887888101f10572924b3): Version 1.0.7
+- [`90dad1d`](https://github.com/pixlcore/xysat/commit/90dad1d2d59707e33c8fa88f087622725f437f2f): use /proc/loadavg for load average on linux, as it's more accurate inside containers vs. Node's os.loadavg()
+- [`0b02ba1`](https://github.com/pixlcore/xysat/commit/0b02ba127111f948b39f8d8f8b1fd2691e340f14): Add optional config prop: `disable_job_network_io`, which will prevent calling "ss" every second during job runs.  For servers with a very large amount of concurrent network connections.
+
+## Version v1.0.6
+
+> February 25, 2026
+
+- [`099aa97`](https://github.com/pixlcore/xysat/commit/099aa97d45771670ee3cc44d507024a38da290cf): Version 1.0.6
+- [`f94262f`](https://github.com/pixlcore/xysat/commit/f94262f20abb199a0bd1d8c466fd129aa25037da): Increase time and memory limit for "ss" call in getNetworkConnections (called every minute).
+- [`2ef5f76`](https://github.com/pixlcore/xysat/commit/2ef5f76f6830e4bc3ff09238862dfbe8f312b04c): Bug Fix: Crasher if "ss" command failed (improperly handling error case).
+
+## Version v1.0.5
+
+> February 24, 2026
+
+- [`9e4d910`](https://github.com/pixlcore/xysat/commit/9e4d9104c5c7a7d87641d13ed645cb075d9ed7e4): Version 1.0.5
+	- Bump version to rebuild package-lock.json.
+
+## Version v1.0.4
+
+> February 24, 2026
+
+- [`6e72eb0`](https://github.com/pixlcore/xysat/commit/6e72eb0c24e141e02c16abb7d558625eba7800dd): Version 1.0.4
+	- Remove npm as direct dependency, and install it only as part of the GH actions standalone builds.
+
+## Version v1.0.3
+
+> February 24, 2026
+
+- [`dd9e595`](https://github.com/pixlcore/xysat/commit/dd9e5958f3984fdb8cd4519fbf913bdb9ee3bdd4): Version 1.0.3
+	- Bump systeminformation to v5.31.1 for various vuln fixes.
+- [`759fa15`](https://github.com/pixlcore/xysat/commit/759fa159ec699501c4ad4cd2fcae9bc19b208287): Container Start Script: If config.json file exists but is zero bytes, still run the bootstrap.
+
+## Version v1.0.2
+
+> February 18, 2026
+
+- [`054a0d4`](https://github.com/pixlcore/xysat/commit/054a0d4949db82bfe13d679571efae1ae395c6dd): Version 1.0.2
+- [`8fac770`](https://github.com/pixlcore/xysat/commit/8fac7700b3c8b3a24281f3983aed7079763954b6): Add more verbose logging to test-monitors.js script.
+- [`3f48bce`](https://github.com/pixlcore/xysat/commit/3f48bce43def99d693dd783f5bd0c30245d7084e): Fix crasher bug on Linux if `ps` binary is not installed.
+- [`ee39b63`](https://github.com/pixlcore/xysat/commit/ee39b63831da6e822e9827a17a229114ddbfde24): Add retries to bootstrap setup request in container-start.sh
+
+## Version v1.0.1
+
+> February 16, 2026
+
+- [`6c6c9e1`](https://github.com/pixlcore/xysat/commit/6c6c9e1283c9a2d3bd58f36a5434a36a3dbb9032): Version 1.0.1
+- [`6b440f7`](https://github.com/pixlcore/xysat/commit/6b440f78191bdc8ea088cbd7078ff4aa2a214e4a): Handle rare case when plugin cannot be found (i.e. plugin deleted with jobs still scheduled).
+- [`11bc7c7`](https://github.com/pixlcore/xysat/commit/11bc7c701ce999b59da93622b0878b51c486bc2d): Temp File Behavior: Use extensionless temp files for Plugins, for better compatibility.  Windows is still the exception.
+
+## Version v1.0.0
+
+> February 11, 2026
+
+- [`6212eb6`](https://github.com/pixlcore/xysat/commit/6212eb6a310346490fca60e2b0aed80f408eb42a): Add delayedAutoStart property for Windows service settings.
+- [`a0a92a9`](https://github.com/pixlcore/xysat/commit/a0a92a91c94f00f51acab79a581fe00ed7abe20f): Redesigned Windows self-deletion process so it actually removes the whole directory on uninstall.
+- [`43ccfd5`](https://github.com/pixlcore/xysat/commit/43ccfd5883959b54927c50f731f4e883a65558bb): Version 1.0.0
+	- Bump node-pty to v1.1.0
+	- Bump npm to v10.9.4 (the stock node v22 version)
+	- Bump systeminformation to v5.30.7
+- [`4a72115`](https://github.com/pixlcore/xysat/commit/4a72115b39e5dcdb02c6c3de46089613ba20d127): Major Upgrade: Bump Node.js from v18 to v22, and bump macOS from v14 to v15.
+
+## Version v0.9.79
+
+> February 5, 2026
+
+- [`6991dce`](https://github.com/pixlcore/xysat/commit/6991dce224c0e0500faf7b0df9aa9674a13917fb): Version 0.9.79
+- [`4aefe72`](https://github.com/pixlcore/xysat/commit/4aefe727cb022e878f41be5ad477c721f33c3541): Add monitoring self-test script, for troubleshooting issues with SI, etc.
+- [`ade7500`](https://github.com/pixlcore/xysat/commit/ade75009c44e69f7a246cce9baf059c3b2e26b94): Add lots of debug log calls at level 9, for troubleshooting stuck monitors on some systems.  Also, add callback support for monitoring calls, for test harness.
+
+## Version v0.9.78
+
+> February 3, 2026
+
+- [`eb55f86`](https://github.com/pixlcore/xysat/commit/eb55f86867984f1fefb91e39c29b13c2b279d248): Version 0.9.78
+- [`f058483`](https://github.com/pixlcore/xysat/commit/f05848351603d6d6470a873cbb7b8a6977734a20): Add support for new job.status string.
+
+## Version v0.9.77
+
+> February 1, 2026
+
+- [`c1ab406`](https://github.com/pixlcore/xysat/commit/c1ab40677cfa2da9b378e9b97ba23c2e1fe48509): Version 0.9.77
+- [`e171a87`](https://github.com/pixlcore/xysat/commit/e171a8745ab8925148a2afd83de493f9506f9bf2): HTTP Plugin: Scalability adjustments: Support sending JSON body data payloads up to 32 MB.  Do not display response body if over 1 MB.
+- [`8ab68bd`](https://github.com/pixlcore/xysat/commit/8ab68bd9ab6adfcbed152fef18085b6d78da38e4): Scalability: Increase child STDIO JSON message limit from 1 MB to 32 MB.  Adjust debug logging to compensate.
+
+## Version v0.9.76
+
+> January 30, 2026
+
+- [`d45df5e`](https://github.com/pixlcore/xysat/commit/d45df5e936c6cb2925c21e248a5e661cb7d26c19): Version 0.9.76
+- [`f194a02`](https://github.com/pixlcore/xysat/commit/f194a027accb46d8dd3778a914cbcd1667bd6343): Job Data: Always populate `base_url` in job, and XYOPS_JOB_DATA env var as well.
+- [`d614c69`](https://github.com/pixlcore/xysat/commit/d614c69141319971c77611cd6904b3e0c22aa632): Typo fix in README
+- [`8b3c70e`](https://github.com/pixlcore/xysat/commit/8b3c70ee9b5f04ca0167928369e96e3a5713124b): Add manual installation instructions for Linux, macOS and Windows.
+
+## Version v0.9.75
+
+> January 27, 2026
+
+- [`19f6f51`](https://github.com/pixlcore/xysat/commit/19f6f51399e876809cfae52099709830dae6438d): Version 0.9.75
+- [`1fa00b2`](https://github.com/pixlcore/xysat/commit/1fa00b21c60bb9542a5607c23d8b2feb9322e7e4): Copy non-object workflow params into environment variables with `workflow_` key prefix.
+- [`10d19d6`](https://github.com/pixlcore/xysat/commit/10d19d6f9092db595a03d1d8bfb029de1ad17001): Fix typo in error string.
+
+## Version v0.9.74
+
+> January 25, 2026
+
+- [`6661904`](https://github.com/pixlcore/xysat/commit/6661904af10fd2c2d0a4a86d9cbf3f903c1b47a0): Version 0.9.74
+	- Bump pixl-boot to v2.0.2 for improved systemd service behavior.
+	- Bump systeminformation to v5.30.6 for all the latest bug fixes.
+
+## Version v0.9.73
+
+> January 25, 2026
+
+- [`9a01619`](https://github.com/pixlcore/xysat/commit/9a0161986e85d4021a66c8e4da22e6177b391147): Version 0.9.73
+- [`b77ef2f`](https://github.com/pixlcore/xysat/commit/b77ef2ff70c1c174ef81d991d5cb2e69f0c62736): Windows Bug Fix: Allow Plugins to use Powershell by using correct ".ps1" script file extension.
+
+## Version v0.9.72
+
+> January 24, 2026
+
+- [`1b172ec`](https://github.com/pixlcore/xysat/commit/1b172ec48a5c163385e547ee985238630a423365): Version 0.9.72
+- [`8c8f8f9`](https://github.com/pixlcore/xysat/commit/8c8f8f986ccae6b4efb4dee2c088ee0ba3ac8e35): Shell Plugin: New optional param: "pass" which will passthrough all input data to output.
+- [`eec9e09`](https://github.com/pixlcore/xysat/commit/eec9e0959d579e3b60d1dae434b177aa21a08e34): HTTP Plugin: Improve handling and display of core errors (e.g. "Socket hang up").
+- [`bedcfbf`](https://github.com/pixlcore/xysat/commit/bedcfbf0608c152698b0a51c55aebeea00f6db82): Job Input File Handing: Skip file download when "runner" is set, also strip file.path param after downloading (to avoid user confusion).
+
+## Version v0.9.71
+
+> January 20, 2026
+
+- [`b2dfc3a`](https://github.com/pixlcore/xysat/commit/b2dfc3a299255d2f03b401209efa6a53d34243c1): Version 0.9.71
+- [`930530f`](https://github.com/pixlcore/xysat/commit/930530f13573d86577b4a5cf32db74069e935452): Fix: detectVirtualization could hang indefinitely with Azure and DigitalOcean clouds.
+
+## Version v0.9.70
+
+> January 17, 2026
+
+- [`792c0ab`](https://github.com/pixlcore/xysat/commit/792c0ab03b6cf9e9414782454f6093e8ca80c15a): Version 0.9.70
+- [`ba0573a`](https://github.com/pixlcore/xysat/commit/ba0573a3c4ffbc7e8137db856dc36be6ca84b467): Fix: getDiskFast: Disk utilization numbers were inflated for some setups (disk partitions were counted twice).
+
+## Version v0.9.69
+
+> January 17, 2026
+
+- [`a1e200f`](https://github.com/pixlcore/xysat/commit/a1e200ffada0fa71df455a361d941ccde63591bb): Version 0.9.69
+- [`0d99c00`](https://github.com/pixlcore/xysat/commit/0d99c00ad647d1641332f25aef379d9673d85d47): Tweak debug levels of initial communication / auth challenge, and add some additional debug log entries.
+- [`12aded5`](https://github.com/pixlcore/xysat/commit/12aded50e7d0ef36f97e5b5299ac7e0a77fcc27c): Add standard control.sh script for starting / stopping daemon (not for containers).
+
+## Version v0.9.68
+
+> January 14, 2026
+
+- [`dffcfd3`](https://github.com/pixlcore/xysat/commit/dffcfd379e9a229e6e422d6be67879e0e8f61e9f): Version 0.9.68
+- [`0817a61`](https://github.com/pixlcore/xysat/commit/0817a61731efe2b387f4e8f8431679ed6d2706fb): Upgrade Satellite: Remove "__daemon" environment variable, used by pixl-server.
+- [`226b9c4`](https://github.com/pixlcore/xysat/commit/226b9c49277207d1b8b7545078a7c2313f9c6797): Startup Log File Check: Include hostname in notice/critical messages sent to conductor.
+
+## Version v0.9.67
+
+> January 14, 2026
+
+- [`9e4fa37`](https://github.com/pixlcore/xysat/commit/9e4fa37353f3f1c24790e5db54758877d490c40d): Version 0.9.67
+- [`5692f8f`](https://github.com/pixlcore/xysat/commit/5692f8fe7f0de2d5cfa0172233dea4e1d72dff60): Comm: Sanity check on socket in handleSocketMessage (race condition on shutdown)
+
+## Version v0.9.66
+
+> January 14, 2026
+
+- [`c2c2fc0`](https://github.com/pixlcore/xysat/commit/c2c2fc0a3adfb3b68fd2031b1f8eac23e1022371): Version 0.9.66
+- [`763a73a`](https://github.com/pixlcore/xysat/commit/763a73a016b8b9410729cce54d987304f51ae70d): Crasher Fix: Sending incorrect websocket data format for notice/critical messages.
+
+## Version v0.9.65
+
+> January 13, 2026
+
+- [`0270765`](https://github.com/pixlcore/xysat/commit/0270765a12533c968ced2be98ca3d6924379eb81): Version 0.9.65
+- [`518f9d7`](https://github.com/pixlcore/xysat/commit/518f9d7088f4df893f965efd726498d43d1dc7c1): New upgrade logic: Use background.log, check for stale log, etc.
+- [`e535c33`](https://github.com/pixlcore/xysat/commit/e535c33ba3eebc8e2ae7587ded540fbd21d5c23e): On socket auth, check for background.log and crash.log.  If found, send notices/criticals to the primary conductor.
+
+## Version v0.9.64
+
+> January 10, 2026
+
+- [`d139bc1`](https://github.com/pixlcore/xysat/commit/d139bc175471ef19e54600e28d712f21414db63f): Version 0.9.64
+- [`4600d07`](https://github.com/pixlcore/xysat/commit/4600d07cc584f885bd1b1d981427e2634b032ca4): Fix: Export PATH in container-start.sh, so it properly propagates out
+
+## Version v0.9.63
+
+> January 10, 2026
+
+- [`4dccb60`](https://github.com/pixlcore/xysat/commit/4dccb60fabde4f539380abb4e084e74e5ab2cbc1): Version 0.9.63
+- [`e99bd7e`](https://github.com/pixlcore/xysat/commit/e99bd7e3b413c1232b515a2d14d41991e0197173): Add common PATH locations to container-start.sh
+
+## Version v0.9.62
+
+> January 10, 2026
+
+- [`87a4a1c`](https://github.com/pixlcore/xysat/commit/87a4a1c1cc596c4803c1f10af6ec29c21875a1ef): Version 0.9.62
+- [`80e0c29`](https://github.com/pixlcore/xysat/commit/80e0c29ef76a8ac736b3f29e8d5a96203d5de0b6): Fix: Move uv/uvx binaries to a standard PATH location
+
+## Version v0.9.61
+
+> January 10, 2026
+
+- [`3b3c23a`](https://github.com/pixlcore/xysat/commit/3b3c23a0f1d18a82d547c2dfe6c70e7c5d18d458): Version 0.9.61
+- [`3e360b6`](https://github.com/pixlcore/xysat/commit/3e360b6611d034096bb622026353fbb611cbb9c4): Refactor: Changes in monitor plugins and new features.
+- [`6b021b6`](https://github.com/pixlcore/xysat/commit/6b021b6b67e513e7b611b8f0c23ece3e179cf1a5): Add new "features" object, which reports satellite features on connect
+- [`ef38f37`](https://github.com/pixlcore/xysat/commit/ef38f37f9d9b24f6b42f7ca9a5d75ba50d32eee7): Drop default ping timeout from 120 to 60 seconds, and add support for new testMonitorPlugin command.
+- [`7678659`](https://github.com/pixlcore/xysat/commit/7678659ca5ea52d73d0b2dc3276ae62019fed06e): Test Plugin: Add support for simulated "Abort" style response.
+- [`bed1a7f`](https://github.com/pixlcore/xysat/commit/bed1a7faaf97be36451f7f23372da58075473284): HTTP Plugin: Report details in markdown format, and set idleTimeout to value of timeout.
+
+## Version v0.9.60
+
+> January 8, 2026
+
+- [`824e6ea`](https://github.com/pixlcore/xysat/commit/824e6ea844d3a2dc2de7050b452d2946f0d28d43): Version 0.9.60
+- [`dfefa9f`](https://github.com/pixlcore/xysat/commit/dfefa9fd44e21a3b2f3bda01dddfa7afe30065ed): Fix: Properly handle shutdown while jobs are still running.
+
+## Version v0.9.59
+
+> January 8, 2026
+
+- [`8deef75`](https://github.com/pixlcore/xysat/commit/8deef75017305fec975844be07eeeb45d8657c00): Version 0.9.59
+- [`75a6adc`](https://github.com/pixlcore/xysat/commit/75a6adc4794e8525957ec8109bb4e98a31d9564d): Fix: Crasher bug in detectVirtualization with public cloud VMs
+- [`c393066`](https://github.com/pixlcore/xysat/commit/c393066a240bd9f542fe9a48877621c95cd6e7e5): Fix: Crasher bug on macOS when netstat doesn't return any interfaces.
+- [`95a6d3f`](https://github.com/pixlcore/xysat/commit/95a6d3f8d03188817cd9759e9071469609202b3a): Changelog Script: Add smarts, tweak formatting.
+
+## Version v0.9.58
+
+> January 5, 2026
+
+- [`4f00f79`](https://github.com/pixlcore/xysat/commit/4f00f79127e662aa9ff7b2decd77b396dfeb72cc): Version 0.9.58
+- [`63d470e`](https://github.com/pixlcore/xysat/commit/63d470e9994c15cf28366f16e8d8c40e5c4b60d5): Add container sanity check in container-start.sh
+- [`f3c8287`](https://github.com/pixlcore/xysat/commit/f3c82874bebff28e25ae8b2d5d5de86ee1e5d13a): If files failed to upload during job finish, clear out files array
+- [`e54a0bb`](https://github.com/pixlcore/xysat/commit/e54a0bb4e64b742dc0abfbdff3449887c3bbb65e): Rename start.sh to container-start.sh (only for use as a docker container entrypoint)
+
+## Version v0.9.57
+
+> December 31, 2025
+
+- [`3743d35`](https://github.com/pixlcore/xysat/commit/3743d35fa6f0ccb1aea37b0f318e80bb1585dc57): Version 0.9.57
+- [`0fa6ab5`](https://github.com/pixlcore/xysat/commit/0fa6ab5094a358602af81d79ab6a78a229545de7): Add changelog generator script, and changelog itself.
+- [`a23c985`](https://github.com/pixlcore/xysat/commit/a23c9854fe25fba29c5b3de66cd48b79d8ba3fdf): Add package-lock
+
+## Version v0.9.56
+
+> December 30, 2025
+
+- [`9fa719a`](https://github.com/pixlcore/xysat/commit/9fa719ad271a3e19907c7f7d4ca656ea545fe497): Version 0.9.56
+- [`d874422`](https://github.com/pixlcore/xysat/commit/d8744228bf59c6d975478c553b193dd8516ac943): Only add non-object params to ENV vars (i.e. skip JSON ones)
+- [`e335bb2`](https://github.com/pixlcore/xysat/commit/e335bb2fbdbd4919a015f0a38a69ca4622d1c2e3): Test Plugin: Log incoming job params.
+
+## Version v0.9.55
+
+> December 29, 2025
+
+- [`2101471`](https://github.com/pixlcore/xysat/commit/2101471f677dc4bc7e76944027e35ed6d8093092): Version 0.9.55
+	- No longer mapping XYOPS_ env vars.  Instead, support XYSAT_ as an alias env var prefix.
+	- This is so we can have satellite coexist inside the xyops container, and the env vars won't clash (i.e. XYOPS_foreground for example).
+
+## Version v0.9.54
+
+> December 24, 2025
+
+- [`fa9bcd6`](https://github.com/pixlcore/xysat/commit/fa9bcd6080693ccf2e9da79271facd60709e68dd): Version 0.9.54
+- [`f1d006c`](https://github.com/pixlcore/xysat/commit/f1d006c7b0a3be2102a29e293445d1637f730f3c): Multiple changes...
+- [`38ac10d`](https://github.com/pixlcore/xysat/commit/38ac10d5926bbf73c620e0cdf567235fee1673a7): Remove pid check in main.js -- happens already in pixl-server
+
+## Version v0.9.53
+
+> December 16, 2025
+
+- [`41efd6d`](https://github.com/pixlcore/xysat/commit/41efd6d6c480fc2e07abee5b4f0df73650f98196): Version 0.9.53
+- [`6b147c9`](https://github.com/pixlcore/xysat/commit/6b147c9d011e07a4dd48088d281e85b9a8a0a661): Retire macos 13, move to 14...
+
+## Version v0.9.52
+
+> December 16, 2025
+
+- [`97a45ba`](https://github.com/pixlcore/xysat/commit/97a45ba4d33eb125b33b10ca51215e021e5f93e6): Version 0.9.52
+	- Bump pixl-tools to v2.0.0 for redesigned ID generation
+	- Bump systeminformation to v5.27.14 for vuln fix on windows.
+- [`95e6192`](https://github.com/pixlcore/xysat/commit/95e6192746950235a3e26155fcb8827fe36d81f0): Protection against event plugin printing the entire job object to STDOUT
+- [`bacf4ee`](https://github.com/pixlcore/xysat/commit/bacf4ee15fe75968f06f922ab227e32633b0dd65): Remove debugging info
+- [`083f518`](https://github.com/pixlcore/xysat/commit/083f5184c71ad2177519e44051ff1e0fc37d03c5): Remove unused "monitoring_only" flag
+
+## Version v0.9.51
+
+> December 6, 2025
+
+- [`1bdb290`](https://github.com/pixlcore/xysat/commit/1bdb290b49b79e583484b4edf5789823913b166b): Version 0.9.51
+- [`6dd4777`](https://github.com/pixlcore/xysat/commit/6dd477708cadbb59b30797acac81f770b523f6f6): Use exec to replace start.sh script process with node process
+- [`430c2da`](https://github.com/pixlcore/xysat/commit/430c2daf9fa8a2431f09c044548d79671270e767): Startup config validation and debug logging (auth vs key methods)
+- [`f0318fe`](https://github.com/pixlcore/xysat/commit/f0318feb28f5aea2076186e2529b0622676dbc06): Add level-9 debug logging for auth server negotiation
+- [`696481d`](https://github.com/pixlcore/xysat/commit/696481dc70baae585853e7f70d5420cc44597492): Echo custom param in output data
+
+## Version v0.9.50
+
+> December 5, 2025
+
+- [`8c1db57`](https://github.com/pixlcore/xysat/commit/8c1db573d88c110674eeb2cc835f9c0ebe323360): Version 0.9.50
+- [`470e84e`](https://github.com/pixlcore/xysat/commit/470e84e08dd422d616f1ccd0cc2d700ca190efbb): Add protection against rare race condition, which could crash if socket was closed during the quickmon host delay.
+
+## Version v0.9.49
+
+> December 3, 2025
+
+- [`d807722`](https://github.com/pixlcore/xysat/commit/d80772296f7d72a7997258046383390fab6e9d99): Version 0.9.49
+- [`ed7b383`](https://github.com/pixlcore/xysat/commit/ed7b38358dc4d76366801855015ac39717640c2e): Always report job completion on process exit (copy shell plugin behavior)
+- [`164f781`](https://github.com/pixlcore/xysat/commit/164f7811473675238edd3dc9612716037b9f1196): Fix issue with secrets getting clobbered by runner meta
+
+## Version v0.9.48
+
+> December 3, 2025
+
+- [`c986f93`](https://github.com/pixlcore/xysat/commit/c986f93243fdbd65f0e3ff47e14bd3d6e524e18b): Version 0.9.48
+	- Add some missing libraries (fallout from the switch to the slim image)
+
+## Version v0.9.47
+
+> December 2, 2025
+
+- [`3c99af0`](https://github.com/pixlcore/xysat/commit/3c99af010c681f7dc16488837cec75f90a6cf333): Version 0.9.47
+- [`f49e276`](https://github.com/pixlcore/xysat/commit/f49e2767e078a8e928899fb89d6f750e2577fe6d): Trying node:22-bookworm-slim again, also added labels
+
+## Version v0.9.46
+
+> December 2, 2025
+
+- [`56914c7`](https://github.com/pixlcore/xysat/commit/56914c7d22f60bdd7e1d86b051e9b330ef600f2b): Version 0.9.46
+- [`3751491`](https://github.com/pixlcore/xysat/commit/37514910cfc6819ae3263e79ea82c7c16e5eb7fc): Switch to node:22-bookworm, so we can build native addons (node-gyp, etc.)
+
+## Version v0.9.45
+
+> December 2, 2025
+
+- [`19fdfdc`](https://github.com/pixlcore/xysat/commit/19fdfdc061246932ba4ac4fa141baaa62822986c): Version 0.9.45
+- [`e03f111`](https://github.com/pixlcore/xysat/commit/e03f1111422b91bc05ad5acffbbc8ec26ea4a58e): Move to node:22-bookworm-slim
+- [`158efa9`](https://github.com/pixlcore/xysat/commit/158efa9d2ba8f11c7f37a02af3da9c222bf45cfc): Pass secrets in job metadata as well as env vars
+- [`8505d89`](https://github.com/pixlcore/xysat/commit/8505d895418e71dfcec900e6e7a1f1fb724a75f7): Add new docker plugin
+
+## Version v0.0.44
+
+> November 30, 2025
+
+- [`bd4961f`](https://github.com/pixlcore/xysat/commit/bd4961f15f1025fb19838d54e5f5b2ff28c62cd6): Version 0.0.44
+- [`04df82a`](https://github.com/pixlcore/xysat/commit/04df82a6f6827d397b7bb03a2303ca233ffd1554): Add support for remote jobs via a runner script (e.g. xyRun)
+- [`379d9b9`](https://github.com/pixlcore/xysat/commit/379d9b9d24deae093d7fff84523719c1783929a0): Cleanup pid file from last run (i.e. from container hard restart)
+
+## Version v0.0.43
+
+> November 24, 2025
+
+- [`c160844`](https://github.com/pixlcore/xysat/commit/c160844653478f3014f5ae4165b42bc89125411d): Version 0.0.43
+- [`4be2c8b`](https://github.com/pixlcore/xysat/commit/4be2c8b1c44086948a032c837792fde6b530a18b): Fix doc links
+- [`6811986`](https://github.com/pixlcore/xysat/commit/6811986838bd784db256c9a51c3dd1e14ff9fe88): Remove old secret_key default prop (not needed)
+- [`556b5d8`](https://github.com/pixlcore/xysat/commit/556b5d82cfe2bce8cf0919bd4ff21444dfd32600): New start script with support for bootstrap config
+
+## Version v0.0.42
+
+> November 22, 2025
+
+- [`edef85f`](https://github.com/pixlcore/xysat/commit/edef85fc9088172b5fbd680456ea2f3495906dd1): Version 0.0.42
+- [`024cfe7`](https://github.com/pixlcore/xysat/commit/024cfe70924e8d74d413c18b59519106fc870243): Include command secrets in env, if any were provided
+- [`92c9799`](https://github.com/pixlcore/xysat/commit/92c97999d4a5d268fe76921302d5a528d50fa375): Multiple changes...
+- [`ef6ccd6`](https://github.com/pixlcore/xysat/commit/ef6ccd6f565fddc766ab19fd64eabe62394c382f): Add updateConfig WS command
+- [`c3332c1`](https://github.com/pixlcore/xysat/commit/c3332c129b96d79e095e723411e1861e794f1c73): Re-lic to BSD-3
+
+## Version v0.0.41
+
+> October 24, 2025
+
+- [`9fd2e91`](https://github.com/pixlcore/xysat/commit/9fd2e916f2e1c8105a5e40bdc6dd3f5773f30eb2): Version 0.0.41
+- [`5d7510e`](https://github.com/pixlcore/xysat/commit/5d7510e63757e313551661c6f364ef4522b095d2): Support new "details" object sent alongside job.
+- [`669eb7c`](https://github.com/pixlcore/xysat/commit/669eb7ce460f6185622cbe1f71f91a4360af44c8): Update LICENSE formatting so it (hopefully) triggers GitHub's auto-license detection
+
+## Version v0.0.40
+
+> October 23, 2025
+
+- [`3e132f6`](https://github.com/pixlcore/xysat/commit/3e132f66926a56524047234deab54c57234b8d34): Version 0.0.40
+- [`af91a45`](https://github.com/pixlcore/xysat/commit/af91a45af99640f9e485705a5ee04f58d6211924): Standardize on xy:1
+- [`3ac5e2a`](https://github.com/pixlcore/xysat/commit/3ac5e2a3831b366e42279b9879ed959ffdeae330): Standardize on xy:1, also fix bug with error handling
+- [`d9707bc`](https://github.com/pixlcore/xysat/commit/d9707bc56c12f231e2d8ed8a79454f72e26b177b): Standardize on STDIO API with xy and type props, sent into child
+
+## Version v0.0.39
+
+> October 11, 2025
+
+- [`9adbd42`](https://github.com/pixlcore/xysat/commit/9adbd42efc5864d53880d002571932fecea4867b): Version 0.0.39
+- [`75a2c83`](https://github.com/pixlcore/xysat/commit/75a2c831a8a2c844719863ab269eec1e598aea75): Still trying to get Docker CLI to install...
+
+## Version v0.0.38
+
+> October 11, 2025
+
+- [`94ca6ba`](https://github.com/pixlcore/xysat/commit/94ca6ba3d5381438abbca9621734867094f88403): Version 0.0.38
+- [`81f862c`](https://github.com/pixlcore/xysat/commit/81f862c174d9858a9c235ff3f7ff996ebcbda477): Typo
+
+## Version v0.0.37
+
+> October 11, 2025
+
+- [`8bbceb9`](https://github.com/pixlcore/xysat/commit/8bbceb9dd8d73012b48c878b397983c2dacee371): Version 0.0.37
+- [`bd22f4a`](https://github.com/pixlcore/xysat/commit/bd22f4a0d2ccd1f041dc3163fd18a435da064c42): Another attempt at getting docker CLI to install
+
+## Version v0.0.36
+
+> October 11, 2025
+
+- [`4f25c15`](https://github.com/pixlcore/xysat/commit/4f25c15c33eb74e25d495c4d0d2db94750f8547c): Version 0.0.36
+- [`703745f`](https://github.com/pixlcore/xysat/commit/703745fdc73694886e564723ddfee80e4e34add7): add some custom PATHs and set sane defaults (on linux/macos)
+- [`f06c848`](https://github.com/pixlcore/xysat/commit/f06c8486458fbaa5c127e53db4e1707853fdb0d3): Multiple changes...
+- [`b122d49`](https://github.com/pixlcore/xysat/commit/b122d49df84a8062018f780fb3c7281363cc5cb8): Add git and docker CLI
+
+## Version v0.0.35
+
+> October 7, 2025
+
+- [`5995aa3`](https://github.com/pixlcore/xysat/commit/5995aa3b5a51c8e4c69958a8945ba16d2e9a739f): Version 0.0.35
+- [`d36be08`](https://github.com/pixlcore/xysat/commit/d36be0825e9967515ee87c6744a6eae8b91b8f03): Fix issue where child emitting random (non-xy) JSON isn't echoed in output
+
+## Version v0.0.34
+
+> October 7, 2025
+
+- [`21f9b41`](https://github.com/pixlcore/xysat/commit/21f9b41ef284b430bdddfb47e7eba10aee5345eb): Version 0.0.34
+	- Add npm as dep, to test npx when installed this way
+- [`596ea34`](https://github.com/pixlcore/xysat/commit/596ea340cf2efdc1b54cf3dd8c4a2390684f400a): Add section on included software (node.js)
+
+## Version v0.0.33
+
+> October 7, 2025
+
+- [`08f3abf`](https://github.com/pixlcore/xysat/commit/08f3abf1becfed686a7cb8e548f53d92ab2928f4): Version 0.0.33
+- [`9b14888`](https://github.com/pixlcore/xysat/commit/9b148887bf8ab14a27f0fa1e85b5b6b862b13613): Support new "host" param / env var to override hosts
+- [`67a0ab9`](https://github.com/pixlcore/xysat/commit/67a0ab9563bb7864defd5af5b300cfacb0910e9c): Use perf.metrics() instead of the old summarize()
+- [`d2feb2e`](https://github.com/pixlcore/xysat/commit/d2feb2e527ec1f0fa3d46b02fdcf3a5dc82f6a27): Rename legacy mode to cronicle mode
+
+## Version v0.0.32
+
+> September 12, 2025
+
+- [`e2a4bae`](https://github.com/pixlcore/xysat/commit/e2a4bae3eefca6ee8d4ad899e7be4866c3317a86): Version 0.0.32
+- [`45bc4f9`](https://github.com/pixlcore/xysat/commit/45bc4f9a0feb24ffb49ff6819fb3801650c9658c): Change job kill (abort policy) to string: none, parent, or all.
+
+## Version v0.0.31
+
+> September 11, 2025
+
+- [`dddc3c5`](https://github.com/pixlcore/xysat/commit/dddc3c570abfa41e230e692eca0d94ee82fbc301): Version 0.0.31
+- [`b40c7c1`](https://github.com/pixlcore/xysat/commit/b40c7c13e98f6fd96259288c037c8f7f06d09c54): Implement kill all children option (job.kill)
+- [`1c247c3`](https://github.com/pixlcore/xysat/commit/1c247c30d7a47128864235377534c25abf3cc4cf): Implement cleanEnv
+
+## Version v0.0.30
+
+> September 6, 2025
+
+- [`0872af9`](https://github.com/pixlcore/xysat/commit/0872af99df749898ba752cf277e09bc907ca0371): Version 0.0.30
+- [`9d2ebaa`](https://github.com/pixlcore/xysat/commit/9d2ebaa45ad8f8e3406322ebc57b4bd4148e7652): Change startup msg log level back to 2 (race condition with windows)
+- [`a41dd49`](https://github.com/pixlcore/xysat/commit/a41dd49ad8809a2c1402a499294484a3614452dd): Log startup message to windows event logger
+
+## Version v0.0.29
+
+> September 5, 2025
+
+- [`47f924c`](https://github.com/pixlcore/xysat/commit/47f924c956f426d90ed6dd8da6dcbe2bda34c982): Version 0.0.29
+- [`605eab0`](https://github.com/pixlcore/xysat/commit/605eab084e665c8fe5916e048711f77570e5cc57): Fix json stream parse on win
+- [`20c9ac3`](https://github.com/pixlcore/xysat/commit/20c9ac3fc2d76c72a4b1cea3a05a6cd283be0004): Fix json stream parser on windows
+- [`13e5ad8`](https://github.com/pixlcore/xysat/commit/13e5ad8cbb416dc1fcc3006ce25a1bf27ad0b5a8): Fix memRss and memVsz on windows
+- [`53cc77a`](https://github.com/pixlcore/xysat/commit/53cc77ac0063c7ded4500ae4764ce85d5c06f59c): Better support for Windows line endings
+- [`d2f4282`](https://github.com/pixlcore/xysat/commit/d2f42829337a57d33390973229bc74aecec475e9): Log startup and shutdown at level 1
+- [`8fda581`](https://github.com/pixlcore/xysat/commit/8fda581060c8859445765196a4c72ce4da2af76e): Log ws connect at level 1
+
+## Version v0.0.28
+
+> September 5, 2025
+
+- [`fb120e1`](https://github.com/pixlcore/xysat/commit/fb120e16897b60643e663a0def0fa3b94c9fc53a): Version 0.0.28
+- [`05b001d`](https://github.com/pixlcore/xysat/commit/05b001d00f49b92d90310cf816ee13624e0274f4): Initial support for win32 (WIP)
+- [`c66aeee`](https://github.com/pixlcore/xysat/commit/c66aeeef7b4ba62e4c7f1e6d38d547bbab567e0e): upgradeSatellite: Lots of changes for WIndows (OMG)
+
+## Version v0.0.27
+
+> September 5, 2025
+
+- [`be064c5`](https://github.com/pixlcore/xysat/commit/be064c504dd0e4576c47ff0107f2aec49d9e4c68): Version 0.0.27
+- [`c1473ee`](https://github.com/pixlcore/xysat/commit/c1473ee1cecbfc2a3a54d2cad19818ee1f368d50): Allow self-upgrades in foreground mode (docker)
+- [`bae922f`](https://github.com/pixlcore/xysat/commit/bae922f5a7498be5118490a876f3289fb001c773): Start: early check for PID file, to prevent stompping on ourselves
+
+## Version v0.0.26
+
+> September 4, 2025
+
+- [`6132b8a`](https://github.com/pixlcore/xysat/commit/6132b8a97c50f29f2f6d08f388e6fb987d19be46): Version 0.0.26
+- [`cbf4903`](https://github.com/pixlcore/xysat/commit/cbf49034607678993dea265babf59fd00683999f): Multiple changes...
+- [`394825b`](https://github.com/pixlcore/xysat/commit/394825b3dae5317f1bb24fe44bba4001550a3d50): Do not include uid or gid features for windows
+- [`d5ac1c7`](https://github.com/pixlcore/xysat/commit/d5ac1c78cb5ff875bae2f2eaefd04e51c2b59a8d): Fix class name (Engine to Satellite)
+- [`50caf4e`](https://github.com/pixlcore/xysat/commit/50caf4eb64107b41afb04b932b6f7bceb64f7e38): Multiple changes...
+
+## Version v0.0.25
+
+> September 3, 2025
+
+- [`551d331`](https://github.com/pixlcore/xysat/commit/551d331fb32c990d26b7310abbf416d908c85b8e): Version 0.0.25
+- [`9c567ea`](https://github.com/pixlcore/xysat/commit/9c567ea05dbe02c500eaf304926a94f024e587a9): Cleaner shutdown sequence
+
+## Version v0.0.24
+
+> September 2, 2025
+
+- [`6f42f42`](https://github.com/pixlcore/xysat/commit/6f42f428452e21dc7771e6a4fc22c6a4acc18420): Version 0.0.24
+- [`0c126e7`](https://github.com/pixlcore/xysat/commit/0c126e73c50d72fc6de1c5bf35f48e36ce23d4ef): Log errors to dedicated error log
+- [`a3cc172`](https://github.com/pixlcore/xysat/commit/a3cc1729024fc81fa8423871ce7fbbcd66911836): Split logs into component logs, and move some utility functions to utils.js
+- [`cb85184`](https://github.com/pixlcore/xysat/commit/cb85184984750cf55f3ea54e98d48ce3c035b65e): Split single log into component logs
+- [`7871c83`](https://github.com/pixlcore/xysat/commit/7871c83c46e2b78bae66f162c73983c2bfc3322c): Check for upgradeRequest on jobFinish, call upgradeSatellite if pending
+- [`0d84ac5`](https://github.com/pixlcore/xysat/commit/0d84ac51e2839a0cb199ed72b24015d60256520a): Copy debug and foreground from server, add curlBin and wgetBin on Linux/macOS
+- [`be51ccc`](https://github.com/pixlcore/xysat/commit/be51ccc45f8a282957148df75e76e755bb1958da): Add support for self upgrades
+- [`c19c2cb`](https://github.com/pixlcore/xysat/commit/c19c2cb0a361d81e8ed3b6e5f99c5442716822ee): Support for stopping service on windows via stop command
+- [`e195441`](https://github.com/pixlcore/xysat/commit/e195441ae45d4cb302736a0fb31758690439d948): Buffer job log output (pipeline)
+
+## Version v0.0.23
+
+> August 30, 2025
+
+- [`84a3ddc`](https://github.com/pixlcore/xysat/commit/84a3ddc52d82d185d4aee5044522eaf41a20d4a0): Version 0.0.23
+	- Trying to fix docker build
+- [`d551843`](https://github.com/pixlcore/xysat/commit/d55184366886a1113c9aaa6d259a1fa066d2897e): Fix uv/uvx install steps
+
+## Version v0.0.22
+
+> August 30, 2025
+
+- [`319d5c5`](https://github.com/pixlcore/xysat/commit/319d5c522eedf37dec69f96ff95757a4dc87f637): Update README.
+- [`844fd95`](https://github.com/pixlcore/xysat/commit/844fd95759b69d041a9fd5ca17ae4ca64805a6a4): Version 0.0.22
+	- Relic to MIT
+	- Bump pixl-request to 2.4.1
+	- Bump sysinfo to 5.27.7
+- [`38ace17`](https://github.com/pixlcore/xysat/commit/38ace1737044c3d055705c483b1fdbc0a4e6ab68): Support airgap mode
+- [`4488cc2`](https://github.com/pixlcore/xysat/commit/4488cc2388e85c88f417f9add3bf0a3579b34182): Support for config updates on master connect, and airgap mode, relic to MIT
+- [`14d0d5e`](https://github.com/pixlcore/xysat/commit/14d0d5eaf8576497afeb2ed9dd502079672d2795): Relicense to MIT
+- [`1fc9982`](https://github.com/pixlcore/xysat/commit/1fc998299b13d674905c1a3a1324943e7d2a3da8): New Docker workflow
+- [`3035ba0`](https://github.com/pixlcore/xysat/commit/3035ba037f520029ffbf84b1f0849febc0a6c029): Add info.process.pid
+- [`8a003c5`](https://github.com/pixlcore/xysat/commit/8a003c5df1da2d7e2768af84281e1815a8fda1fa): Support for secrets
+- [`c479249`](https://github.com/pixlcore/xysat/commit/c47924924614019df03aea0b639d3e20ee2697f7): Change boot name to "xysat" for easier use with systemd / systemctl
+
+## Version v0.0.21
+
+> August 8, 2025
+
+- [`8e309f1`](https://github.com/pixlcore/xysat/commit/8e309f141fb3ca7aa83daf116762108e109d09ac): Version 0.0.21
+	- Renamed to xySat!
+- [`a238635`](https://github.com/pixlcore/xysat/commit/a2386357d79c95ad8338af7373f54c21eee2b35a): Rename to xyOps / xySat
+- [`cddaf98`](https://github.com/pixlcore/xysat/commit/cddaf98a276057bb61944de8bf9db8b8d30ce7fb): Remove extra params, always spawn sleep proc and report progress, tweak sample data
+
+## Version v0.0.20
+
+> July 26, 2025
+
+- [`970447b`](https://github.com/pixlcore/xysat/commit/970447b67ccf0df88fa664d3048a0da061cfcced): Version 0.0.20
+- [`988ddf6`](https://github.com/pixlcore/xysat/commit/988ddf61f7aea8014637d9584a2809829fbcf97f): Big rename to opsrocket-satellite
+
+## Version v0.0.19
+
+> July 25, 2025
+
+- [`b674239`](https://github.com/pixlcore/xysat/commit/b674239dedb2ee09b7dfa9919447666260c8cc51): Version 0.0.19
+- [`986c542`](https://github.com/pixlcore/xysat/commit/986c542edee13e05920606bbe1215eaa3e80ef99): A bunch of changes...
+- [`a793574`](https://github.com/pixlcore/xysat/commit/a793574936bf998b8251fd84dd65346f2e6ff438): Tweak dirs for new job.cwd overhaul
+- [`11b8204`](https://github.com/pixlcore/xysat/commit/11b8204f914ad903d2ac50a941c0de4e2b4a3894): Now downloading to job cwd, and use Path.join for windows
+- [`3aa4c93`](https://github.com/pixlcore/xysat/commit/3aa4c93b950ec2c33d85870b5e633756f4deefff): Typo fixes
+- [`d8e5b30`](https://github.com/pixlcore/xysat/commit/d8e5b30afa7b3b6b703c62ac67204f7f5935bf6e): chdir fixes for new job temp dir layout
+- [`34b0517`](https://github.com/pixlcore/xysat/commit/34b0517392bded7432e15d73453078a06ac28521): Create job temp dir parent on startup
+- [`8b845d6`](https://github.com/pixlcore/xysat/commit/8b845d6c0e8a0054d2532bea754f0f073cc288cd): Call prepLaunchJob
+- [`46f7ba4`](https://github.com/pixlcore/xysat/commit/46f7ba43d2a1d8092b15f0e39d86e414c6d36b5a): A number of changes...
+- [`141b2d9`](https://github.com/pixlcore/xysat/commit/141b2d9687a90b52e1abe05b31293b08118ceaeb): Fix API URL for uploading job log (needs port now)
+
+## Version v0.0.18
+
+> May 31, 2025
+
+- [`76b0982`](https://github.com/pixlcore/xysat/commit/76b09826d6e41e740226f3374cb2e65c1fbd5fc5): Version 0.0.18
+- [`b62a734`](https://github.com/pixlcore/xysat/commit/b62a734e6379650fc67e446b60bd1e512bdf2eff): Typo fix, and timing delay tweak...
+- [`b689fa9`](https://github.com/pixlcore/xysat/commit/b689fa99fb06fa33a2f30a55090e100a57111ed7): allow `masters` config param to override hosts, and split string if needed
+- [`1e3a62c`](https://github.com/pixlcore/xysat/commit/1e3a62c50e1107aea811989cadefa403ceec5d7c): Port now stored separately from host array
+- [`c5a7811`](https://github.com/pixlcore/xysat/commit/c5a7811e1f84242d77e65f5985a34c3db49d5617): Multiple changes...
+- [`6a96167`](https://github.com/pixlcore/xysat/commit/6a96167e224e50cc550dc4c513e03d4430877162): Create sample config on startup if does not exist.
+
+## Version v0.0.17
+
+> May 30, 2025
+
+- [`bf8e1b3`](https://github.com/pixlcore/xysat/commit/bf8e1b39d9f3e66ce08ee0b03011f44fb06bb7d9): Version 0.0.17
+- [`8b5c9ce`](https://github.com/pixlcore/xysat/commit/8b5c9ce5243a44aa9f814282dc47a8f3b8bf92d6): New dynamic max sleep system for both monitors and quickmon
+- [`72d956a`](https://github.com/pixlcore/xysat/commit/72d956a4a991934d1a1c71531913acfac5694385): Multiple changes...
+- [`f713803`](https://github.com/pixlcore/xysat/commit/f713803eae96e67c27e9a4d42458a5f78f60eb7c): Handle "retry" ws response
+- [`f3a73ae`](https://github.com/pixlcore/xysat/commit/f3a73aee28183a1db75545f8a38b76b0a24829e7): Add support for ORCHESTRA_masters env vars
+- [`c9033e1`](https://github.com/pixlcore/xysat/commit/c9033e168157e4644d4070c00952038c28e7a745): Filter out our own ps spawn from proc list
+- [`bfb21e7`](https://github.com/pixlcore/xysat/commit/bfb21e7d99fba4dcb8a6fc6fc88ec664b0c0565b): Change default socker_reconnect_delay_max to 30s
+- [`7b8ba73`](https://github.com/pixlcore/xysat/commit/7b8ba736498c9952c90f5b1d0b9913b881adba8b): Drop node to version 18
+
+## Version v0.0.16
+
+> April 6, 2025
+
+- [`5ed35a2`](https://github.com/pixlcore/xysat/commit/5ed35a2d0d8d85b05bb9f60fc01fefc39b845c12): Version 0.0.16
+- [`3e6cc0f`](https://github.com/pixlcore/xysat/commit/3e6cc0f732ceb3952a0d2eb5c6e84ac87e60c630): Add node-notifier dep
+- [`d90d0c0`](https://github.com/pixlcore/xysat/commit/d90d0c06c210cf1d8f950f6b6caf7a9e243fdc3e): Improve plugin exec args
+- [`f804eb2`](https://github.com/pixlcore/xysat/commit/f804eb27ea8cc6f03847a119251c88d041784122): Add new ws uninstall conductor command
+- [`7928d87`](https://github.com/pixlcore/xysat/commit/7928d87cb9cd775074dd9c0bb4b509408fc78133): Install script changes...
+- [`a9d74c1`](https://github.com/pixlcore/xysat/commit/a9d74c184bf04af571d8bbef8b81a120bf340d68): Misc cleanup to win32 service stuff
+- [`3a7bedd`](https://github.com/pixlcore/xysat/commit/3a7bedd8588bbf16c18a1879e6c6659b4a3f45dd): Improve error messages
+- [`d94c64f`](https://github.com/pixlcore/xysat/commit/d94c64f088bba7422ab75ed8566980cd5bb7c774): Fully implement uninstall command (deletes everything!)
+- [`5e6cec0`](https://github.com/pixlcore/xysat/commit/5e6cec0e71296c3f1af749b4efd2a8e3ec47de54): Naming (conductor)
+- [`84e31c4`](https://github.com/pixlcore/xysat/commit/84e31c4cb257f1abacaea0ea24724aa72f5400cd): Code cleanup
+- [`bbbd545`](https://github.com/pixlcore/xysat/commit/bbbd54524b849ad1daa5627c2cc3fb620cf7e18f): Exponential backoff retry on socket reconnects
+- [`000f1f2`](https://github.com/pixlcore/xysat/commit/000f1f2f90663a326825b4d4d3a8e7ce2d30510f): Daily log archive
+- [`962ec90`](https://github.com/pixlcore/xysat/commit/962ec90a01be4d51ba122af1536875240cd96b74): Support for windows shell scripts.
+- [`6361f07`](https://github.com/pixlcore/xysat/commit/6361f0744640b4bfb60151a03156578f00da79b6): Multiple...
+- [`92b9930`](https://github.com/pixlcore/xysat/commit/92b9930a8cbeba8d916552fafd993e2b662a06b0): Multiple...
+- [`8d7a71a`](https://github.com/pixlcore/xysat/commit/8d7a71a3a7e868620afff84261a2e9be51e5ff80): Multiple...
+- [`60553b8`](https://github.com/pixlcore/xysat/commit/60553b85163daf3e4e33f17bac3a43bc468fead1): Init procCache, and only check psBin on Linux/macOS
+- [`6464311`](https://github.com/pixlcore/xysat/commit/646431156534f105697dc6af28e0ff2d2620e410): Leave package.json file as it contains our version
+- [`616b0b0`](https://github.com/pixlcore/xysat/commit/616b0b07a916b659a68d348cfee2e4acd9ef9024): Read version from package.json file
+- [`293e065`](https://github.com/pixlcore/xysat/commit/293e065dc6714dacb816aee62f7091be42f14efb): Added clause for included software
+
+## Version v0.0.15
+
+> March 23, 2025
+
+- [`97b2322`](https://github.com/pixlcore/xysat/commit/97b232245d4c27b7d6dd19a0e5b8cfcac8648fab): Version 0.0.15
+	- Add support for merging in initial config push on first load.
+
+## Version v0.0.14
+
+> March 22, 2025
+
+- [`37ac8c1`](https://github.com/pixlcore/xysat/commit/37ac8c1f2b4bd1bab144633f0162aac3edbc14e1): v0.0.14
+- [`d644bd4`](https://github.com/pixlcore/xysat/commit/d644bd47aaa448e3fc577fec89578c7bcf32141a): Support for auth token style handshake with orchestra conductor
+
+## Version v0.0.13
+
+> March 22, 2025
+
+- [`e9c51da`](https://github.com/pixlcore/xysat/commit/e9c51da81cccf7710d925896db63edbccd1e6764): Version 0.0.13
+- [`0555ad3`](https://github.com/pixlcore/xysat/commit/0555ad3e95b41b6d9a4002cbad1e1f2d2849cd7c): More misc file cleanup
+- [`628e290`](https://github.com/pixlcore/xysat/commit/628e290d5acf1fcdda2d07a4be122ee5c5494ef0): More file cleanup
+- [`340824c`](https://github.com/pixlcore/xysat/commit/340824c1244d1f2cee2148803fb7bfbd421a8353): Change plugin loading location.
+- [`09cc0a5`](https://github.com/pixlcore/xysat/commit/09cc0a5c4f5c9ce5a80077f85417f039d4c10240): Rename bin/ to plugins/
+
+## Version v0.0.12
+
+> March 22, 2025
+
+- [`8ecc7e3`](https://github.com/pixlcore/xysat/commit/8ecc7e3e7973b50e075caf323e04a1fcfa6410fd): Version 0.0.12
+- [`d5aadf7`](https://github.com/pixlcore/xysat/commit/d5aadf7b0dc4b8b808424670fcf73f261f97c775): New windows install handler
+- [`83ca88f`](https://github.com/pixlcore/xysat/commit/83ca88f0f9b6cf8600b0fcdaf4ed40cd682233c5): Trying new strat for windows
+- [`52d5d9d`](https://github.com/pixlcore/xysat/commit/52d5d9d7c8e42739f20c98156164cb4bc39a8c61): New windows bat files
+
+## Version v0.0.11
+
+> March 19, 2025
+
+- [`9c5b377`](https://github.com/pixlcore/xysat/commit/9c5b377b1b41d9e455516f4e7e998ad3d13a39a3): Trying proper OS names for x64/arm builds.
+
+## Version v0.0.10
+
+> March 19, 2025
+
+- [`39167af`](https://github.com/pixlcore/xysat/commit/39167af91b9455fbcdf5b98be3d2b97f07734197): Trying to use newfangled arch in GH actions
+
+## Version v0.0.9
+
+> March 19, 2025
+
+- [`6e83479`](https://github.com/pixlcore/xysat/commit/6e83479bd3555b5186b599598e8ee4960fcc0c5a): Trying harder to make GitHub happy.
+
+## Version v0.0.8
+
+> March 19, 2025
+
+- [`5b96c48`](https://github.com/pixlcore/xysat/commit/5b96c48badd5992c8fdbc7f70f261032d90d6510): Trying to make GH happy on the release step...
+
+## Version v0.0.7
+
+> March 19, 2025
+
+- [`bca8526`](https://github.com/pixlcore/xysat/commit/bca85263aab38f0cb6a590691510b127d4979e0e): Trying more things to make Windows happy.
+
+## Version v0.0.6
+
+> March 19, 2025
+
+- [`8470551`](https://github.com/pixlcore/xysat/commit/847055121c47b40e2a16d98909f63026ed2dcb86): Trying an alt way of tarring up the dir.
+
+## Version v0.0.5
+
+> March 19, 2025
+
+- [`41101be`](https://github.com/pixlcore/xysat/commit/41101befc83525cadaf447a8f7bc69d286d64a57): Sigh, trying more things.
+
+## Version v0.0.4
+
+> March 19, 2025
+
+- [`950136c`](https://github.com/pixlcore/xysat/commit/950136c3c4e9a1072f00fc690b5f92aa7c323dbd): Tryng new node-pty build with multi-os matrix.
+
+## Version v0.0.3
+
+> March 17, 2025
+
+- [`b50102b`](https://github.com/pixlcore/xysat/commit/b50102bb62f69a4750967e823e1b87ac92fa2c7c): Version 0.0.3
+	- More github action troubleshooting.
+
+## Version v0.0.2
+
+> March 17, 2025
+
+- [`7c8b057`](https://github.com/pixlcore/xysat/commit/7c8b05703ca1621bcbde6b90f6cbd63b4ddd20ed): Version 0.0.2
+- [`e1ca4f1`](https://github.com/pixlcore/xysat/commit/e1ca4f1dce133d62f5a6b04993aa065c2eb682e9): Typo fix in automation.
+
+## Version v0.0.1
+
+> March 17, 2025
+
+- Initial beta release!

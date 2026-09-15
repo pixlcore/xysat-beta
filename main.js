@@ -11,7 +11,7 @@ const os = require('os');
 const PixlServer = require("pixl-server");
 const pkg = require('./package.json');
 const self_bin = Path.resolve(process.argv[0]) + ' ' + Path.resolve(process.argv[1]);
-const config_file = Path.join( __dirname, 'config.json' );
+const config_file = process.env.XYSAT_config_file || Path.join( __dirname, 'config.json' );
 const is_windows = !!process.platform.match(/^win/);
 
 var config = {};
@@ -30,7 +30,9 @@ var sample_config = {
 	debug_level: 5,
 	child_kill_timeout: 10,
 	monitoring_enabled: true,
-	quickmon_enabled: true
+	quickmon_enabled: true,
+	graphics_enabled: false,
+	docker_enabled: true
 };
 
 const cli = require('pixl-cli');
@@ -53,7 +55,8 @@ if ((args.install || args.uninstall || args.stop) && is_windows) {
 		description: 'xyOps Satellite',
 		script: Path.resolve(  __dirname, 'main.js' ),
 		execPath: process.execPath,
-		scriptOptions: [ '--foreground' ]
+		scriptOptions: [ '--foreground' ],
+		delayedAutoStart: true
 	});
 	
 	if (args.install) {
@@ -73,7 +76,7 @@ if ((args.install || args.uninstall || args.stop) && is_windows) {
 			if (!fs.existsSync(config_file)) {
 				config = sample_config;
 				var raw_config = JSON.stringify( config, null, "\t" );
-				fs.writeFileSync( config_file, raw_config, { mode: 0o600 } );
+				Tools.writeFileAtomicSync( config_file, raw_config, { mode: 0o600, flush: true } );
 				print("\nA sample config file has been created: " + config_file + ":\n");
 				print( raw_config + "\n" );
 				process.exit(0);
@@ -183,13 +186,6 @@ if ((args.install || args.uninstall || args.stop) && is_windows) {
 			// svc.uninstall seems to kill the current process, so we have to do it last
 			println("Calling service uninstall...");
 			svc.uninstall();
-			
-			// final unref exit timer of last resort
-			var finalTimer = setTimeout( function() { 
-				println("Final exit timer has fired.");
-				process.exit(0); 
-			}, 5000 );
-			finalTimer.unref();
 		}, 1000 );
 		
 	} // uninstall
@@ -234,7 +230,7 @@ if (args.install || (args.other && (args.other[0] == 'install'))) {
 		if (!fs.existsSync(config_file)) {
 			config = sample_config;
 			var raw_config = JSON.stringify( config, null, "\t" );
-			fs.writeFileSync( config_file, raw_config, { mode: 0o600 } );
+			Tools.writeFileAtomicSync( config_file, raw_config, { mode: 0o600, flush: true } );
 			print("\nA sample config file has been created: " + config_file + ":\n");
 			print( raw_config + "\n" );
 		}
@@ -296,7 +292,7 @@ else {
 	process.chdir( __dirname );
 	if (!fs.existsSync(config_file)) {
 		// create sample config file if needed (user may have skipped the install step)
-		fs.writeFileSync( config_file, JSON.stringify( sample_config, null, "\t" ), { mode: 0o600 } );
+		Tools.writeFileAtomicSync( config_file, JSON.stringify( sample_config, null, "\t" ), { mode: 0o600, flush: true } );
 	}
 	
 	// map XYSAT_ env vars to SATELLITE_, for convenience
@@ -310,7 +306,7 @@ else {
 	
 	if (Tools.numKeys(args) && !args.debug && !args.echo) {
 		var temp_config = Tools.mergeHashes( JSON.parse( fs.readFileSync( config_file, 'utf8' ) ), args );
-		fs.writeFileSync( config_file, JSON.stringify(temp_config, null, "\t") + "\n", { mode: 0o600 } );
+		Tools.writeFileAtomicSync( config_file, JSON.stringify(temp_config, null, "\t") + "\n", { mode: 0o600, flush: true } );
 	}
 	
 	// start server
@@ -340,19 +336,6 @@ else {
 			server.shutdown();
 		}
 	} );
-	
-	if (is_windows) {
-		// hook logger error event for windows event viewer
-		var EventLogger = require('node-windows').EventLogger;
-		var win_log = new EventLogger('xyOps');
-		
-		win_log.info( "xyOps Satellite v" + pkg.version + " starting up" );
-		
-		server.logger.on('row', function(line, cols, args) {
-			if (args.category == 'error') win_log.error( line );
-			else if ((args.category == 'debug') && (args.code == 1)) win_log.info( line );
-		});
-	}
 	
 	// process.once('SIGINT', function() {
 	// 	// Note: Doesn't pixl-server take care of this?  Why are we hooking SIGINT in main.js?

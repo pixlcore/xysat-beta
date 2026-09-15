@@ -15,7 +15,6 @@ var Path = require('path');
 var JSONStream = require('pixl-json-stream');
 var Tools = require('pixl-tools');
 var Request = require('pixl-request');
-var config = require('../config.json');
 
 // setup stdin / stdout streams 
 process.stdin.setEncoding('utf8');
@@ -29,29 +28,43 @@ stream.on('json', function(job) {
 	var params = job.params;
 	var request = new Request();
 	
+	// try to scrub secrets from output details (best effort)
+	var scrubSecrets = null;
+	if (job.secrets && Tools.firstKey(job.secrets)) {
+		var sec_re = new RegExp( "\\b(" + 
+			Object.values(job.secrets).map( sec => Tools.escapeRegExp(sec) ).join('|') + '|' + 
+			Object.values(job.secrets).map( sec => Tools.escapeRegExp( encodeURIComponent(sec) ) ).join('|') + 
+			")\\b", 'g' );
+		scrubSecrets = function(value) { return String(value).replace( sec_re, '(REDACTED)' ); }
+	}
+	else {
+		scrubSecrets = function(value) { return value; };
+	}
+	
 	var print = function(text) {
 		process.stdout.write(text);
 	};
 	
 	// airgapped mode
-	if (config.airgap && config.airgap.enabled) {
-		if (config.airgap.whitelist && config.airgap.whitelist.length) request.setWhitelist( config.airgap.whitelist );
-		if (config.airgap.blacklist && config.airgap.blacklist.length) request.setBlacklist( config.airgap.blacklist );
+	if (job.airgap && job.airgap.enabled) {
+		if (job.airgap.whitelist && job.airgap.whitelist.length) request.setWhitelist( job.airgap.whitelist );
+		if (job.airgap.blacklist && job.airgap.blacklist.length) request.setBlacklist( job.airgap.blacklist );
 	}
 	
-	// timeout
+	// timeouts
 	request.setTimeout( parseInt(params.timeout || 0) * 1000 );
 	request.setIdleTimeout( parseInt(params.idle_timeout || params.timeout || 0) * 1000 );
+	request.setConnectTimeout( parseInt(params.connect_timeout || 10) * 1000 );
+	
+	// allow URL to be substituted using [placeholders]
+	params.url = Tools.sub( params.url || '', job );
 	
 	if (!params.url || !params.url.match(/^https?\:\/\/\S+$/i)) {
 		stream.write({ xy: 1, complete: true, code: 1, description: "Malformed URL: " + (params.url || '(n/a)') });
 		return;
 	}
 	
-	// allow URL to be substituted using [placeholders]
-	params.url = Tools.sub( params.url, job );
-	
-	print("Sending HTTP " + params.method + " to URL:\n" + params.url + "\n");
+	print("Sending HTTP " + params.method + " to URL:\n" + scrubSecrets(params.url) + "\n");
 	
 	// headers
 	if (params.headers) {
@@ -118,10 +131,10 @@ stream.on('json', function(job) {
 		var text = (!params.download && data) ? data.toString() : '';
 		if (!err) {
 			if (text.match(error_match)) {
-				err = new Error("Response contains error match: " + params.error_match);
+				err = new Error("HTTP " + resp.statusCode + " " + resp.statusMessage + ": Response contains error match: " + params.error_match);
 			}
 			else if (!text.match(success_match)) {
-				err = new Error("Response missing success match: " + params.success_match);
+				err = new Error("HTTP " + resp.statusCode + " " + resp.statusMessage + ": Response missing success match: " + params.success_match);
 			}
 		}
 		
@@ -143,14 +156,15 @@ stream.on('json', function(job) {
 		
 		// attach file to job for upload
 		if (!err && params.download) {
-			var filename = Path.basename(params.url) || 'output';
+			var filename = params.filename || Path.basename(params.url) || 'output';
 			if (resp.headers && resp.headers['content-disposition']) {
 				// grab filename out of CD header, which may or may not have quotes
 				if (resp.headers['content-disposition'].toString().match(/filename="(.+?)"/)) filename = RegExp.$1;
 				else if (resp.headers['content-disposition'].toString().match(/filename=([^\;]+)/)) filename = RegExp.$1;
 			}
 			if (!filename.match(/\.\w+$/)) {
-				if (resp.headers['content-type']) filename += '.' + Path.basename(resp.headers['content-type']);
+				// xyops filenames MUST have an extension, so add one if needed
+				if (resp.headers['content-type']) filename += '.' + Path.basename( resp.headers['content-type'].replace(/\;.*$/, '') );
 				else filename += '.bin';
 			}
 			update.files = [
@@ -170,28 +184,28 @@ stream.on('json', function(job) {
 		
 		details += "### Summary\n";
 		details += "- **Method:** " + params.method + "\n";
-		details += "- **URL:** " + params.url + "\n";
+		details += "- **URL:** " + scrubSecrets(params.url) + "\n";
 		details += "- **Redirects:** " + (params.follow ? 'Follow' : 'n/a') + "\n";
 		details += "- **Timeout:** " + Tools.getTextFromSeconds(params.timeout, false, false) + "\n";
 		if (resp) details += "- **Response:** HTTP " + resp.statusCode + " " + resp.statusMessage + "\n";
 		else if (err) details += "- **Error:** " + err + "\n";
 		
-		if (params.headers.length) {
+		if (params.headers && params.headers.length) {
 			details += "\n### Request Headers:\n\n```http\n";
-			details += params.headers + "\n";
+			details += scrubSecrets(params.headers) + "\n";
 			details += "```\n";
 		}
 		
 		if (params.data && params.data.length) {
 			details += "\n### Request Body:\n\n```\n";
-			details += params.data.trim() + "\n```\n";
+			details += scrubSecrets(params.data.trim()) + "\n```\n";
 		}
 		
 		if (resp && resp.rawHeaders) {
 			details += "\n### Response Headers:\n\n```http\n";
 			
 			for (var idx = 0, len = resp.rawHeaders.length; idx < len; idx += 2) {
-				details += resp.rawHeaders[idx] + ": " + resp.rawHeaders[idx + 1] + "\n";
+				details += resp.rawHeaders[idx] + ": " + scrubSecrets(resp.rawHeaders[idx + 1]) + "\n";
 			}
 			details += "```\n";
 		}
@@ -204,7 +218,7 @@ stream.on('json', function(job) {
 			if (text.length) {
 				details += "\n### Response Body:\n\n```\n";
 				if (text.length >= 1024 * 1024) details += "(Too large to display)\n```\n";
-				else details += text.trim() + "\n```\n";
+				else details += scrubSecrets(text.trim()) + "\n```\n";
 			}
 			
 			// if response was JSON, include parsed data, up to 32 MB
